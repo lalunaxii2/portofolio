@@ -1,694 +1,1321 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Northern Italy — Destinasi Premium Minimalis</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Konfigurasi Tailwind untuk Font Inter dan Palet Warna Premium -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#003366', // Deep Navy Blue (Premium)
-                        'accent': '#B8860B', // Dark Gold/Bronze
-                        'bg-light': '#F8F8F8', // Off-White
-                        'text-dark': '#333333',
-                        'bg-dark': '#1C1C1C', // Dark Charcoal
-                        'text-light': '#E0E0E0',
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jelajahi keindahan Banda Neira - Surga tersembunyi di Maluku dengan sejarah dan alam yang memukau">
+  <meta name="keywords" content="Banda Neira, wisata Maluku, pulau rempah, diving, snorkeling, benteng kolonial">
+  <title>Banda Neira Explorer - Jelajahi Keindahan Pulau Rempah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+        }
+
+        body.light-mode {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-primary: #2563eb;
+            --accent-secondary: #3b82f6;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body.light-mode .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-scroll {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .navbar-scroll {
+            background: rgba(248, 250, 252, 0.95);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .star {
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+
+        .star.active {
+            color: #fbbf24;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-window {
+            display: none;
+            width: 350px;
+            height: 500px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background: var(--accent-primary);
+            color: white;
+            margin-right: auto;
+        }
+
+        .message.user {
+            background: var(--bg-primary);
+            margin-left: auto;
+        }
+
+        .weather-widget {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .chat-window {
+                width: calc(100% - 40px);
+                right: 20px;
+            }
+        }
+
+        .counter {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-item {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body><!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+   <div class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+     <div class="flex items-center space-x-2">
+      <svg class="w-10 h-10 text-blue-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+      </svg><span class="text-2xl font-bold">Banda Neira</span>
+     </div><!-- Desktop Menu -->
+     <div class="hidden md:flex items-center space-x-8"><a href="#home" class="hover:text-blue-400 transition">Beranda</a> <a href="#destinations" class="hover:text-blue-400 transition">Destinasi</a> <a href="#gallery" class="hover:text-blue-400 transition">Galeri</a> <a href="#events" class="hover:text-blue-400 transition">Event</a> <a href="#blog" class="hover:text-blue-400 transition">Blog</a> <a href="#contact" class="hover:text-blue-400 transition">Kontak</a> <!-- Language Switcher --> <select id="langSwitcher" class="bg-transparent border border-gray-600 rounded px-3 py-1 text-sm"> <option value="id">🇮🇩 ID</option> <option value="en">🇬🇧 EN</option> </select> <!-- Dark/Light Mode Toggle --> <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-700 transition"> <i class="fas fa-moon"></i> </button>
+     </div><!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden text-2xl"> <i class="fas fa-bars"></i> </button>
+    </div><!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-4"><a href="#home" class="block hover:text-blue-400 transition">Beranda</a> <a href="#destinations" class="block hover:text-blue-400 transition">Destinasi</a> <a href="#gallery" class="block hover:text-blue-400 transition">Galeri</a> <a href="#events" class="block hover:text-blue-400 transition">Event</a> <a href="#blog" class="block hover:text-blue-400 transition">Blog</a> <a href="#contact" class="block hover:text-blue-400 transition">Kontak</a>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center parallax" style="background: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.5)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=2070') center/cover;">
+   <div class="container mx-auto px-6 text-center relative z-10">
+    <h1 id="heroTitle" class="text-5xl md:text-7xl font-bold mb-6 fade-in float-animation">Jelajahi Keindahan Banda Neira</h1>
+    <p id="heroSubtitle" class="text-xl md:text-2xl mb-8 text-gray-300 fade-in">Surga Tersembunyi di Maluku</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in"><button onclick="scrollToSection('destinations')" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"> <i class="fas fa-compass mr-2"></i>Mulai Petualangan </button> <button onclick="openVideoModal()" class="glass-effect px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"> <i class="fas fa-play mr-2"></i>Tonton Video </button>
+    </div><!-- Search Bar -->
+    <div class="mt-12 max-w-2xl mx-auto">
+     <div class="glass-effect rounded-full flex items-center px-6 py-3"><i class="fas fa-search text-gray-400 mr-3"></i> <input type="text" id="searchBar" placeholder="Cari destinasi, event, atau aktivitas..." class="bg-transparent flex-1 outline-none"> <button class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full ml-3 transition"> Cari </button>
+     </div>
+    </div>
+   </div><!-- Scroll Indicator -->
+   <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"><i class="fas fa-chevron-down text-3xl"></i>
+   </div>
+  </section><!-- Statistics Counter -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-400">
+   <div class="container mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+     <div class="fade-in">
+      <div class="counter text-4xl md:text-5xl font-bold" data-target="15">
+       0
+      </div>
+      <p class="mt-2 text-lg">Destinasi Wisata</p>
+     </div>
+     <div class="fade-in">
+      <div class="counter text-4xl md:text-5xl font-bold" data-target="5000">
+       0
+      </div>
+      <p class="mt-2 text-lg">Pengunjung/Tahun</p>
+     </div>
+     <div class="fade-in">
+      <div class="counter text-4xl md:text-5xl font-bold" data-target="12">
+       0
+      </div>
+      <p class="mt-2 text-lg">Event Tahunan</p>
+     </div>
+     <div class="fade-in">
+      <div class="counter text-4xl md:text-5xl font-bold" data-target="98">
+       0
+      </div>
+      <p class="mt-2 text-lg">Kepuasan (%)</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section id="about" class="py-20">
+   <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+     <div class="fade-in">
+      <h2 id="aboutTitle" class="text-4xl md:text-5xl font-bold mb-6">Tentang Banda Neira</h2>
+      <p id="aboutDescription" class="text-lg text-gray-400 mb-6 leading-relaxed">Banda Neira adalah pulau kecil yang terletak di Kepulauan Banda, Maluku. Dikenal sebagai "Pulau Rempah", kawasan ini memiliki sejarah panjang sebagai pusat perdagangan rempah-rempah dunia. Keindahan alam bawah lautnya yang memukau menjadikannya surga bagi para penyelam.</p>
+      <div class="grid grid-cols-2 gap-4 mb-6">
+       <div class="p-4 glass-effect rounded-lg"><i class="fas fa-history text-3xl text-blue-500 mb-2"></i>
+        <h3 class="font-semibold mb-1">Sejarah Kaya</h3>
+        <p class="text-sm text-gray-400">Warisan kolonial</p>
+       </div>
+       <div class="p-4 glass-effect rounded-lg"><i class="fas fa-water text-3xl text-blue-500 mb-2"></i>
+        <h3 class="font-semibold mb-1">Diving Paradise</h3>
+        <p class="text-sm text-gray-400">Terumbu karang indah</p>
+       </div>
+      </div><button onclick="scrollToSection('destinations')" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition transform hover:scale-105"> Jelajahi Lebih Lanjut </button>
+     </div>
+     <div class="fade-in">
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl"><img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&amp;w=2070" alt="Banda Neira Island" class="w-full h-96 object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Weather Widget -->
+  <section class="py-8 bg-gradient-to-b from-transparent to-gray-900">
+   <div class="container mx-auto px-6">
+    <div class="weather-widget max-w-md mx-auto text-center fade-in">
+     <h3 class="text-2xl font-bold mb-4"><i class="fas fa-cloud-sun mr-2"></i>Cuaca Hari Ini</h3>
+     <div class="flex items-center justify-center gap-6">
+      <div class="text-6xl">
+       ☀️
+      </div>
+      <div class="text-left">
+       <div class="text-5xl font-bold">
+        28°C
+       </div>
+       <p class="text-lg">Cerah Berawan</p>
+       <p class="text-sm opacity-80">Angin: 12 km/h | Kelembaban: 75%</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Destinations -->
+  <section id="destinations" class="py-20">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Destinasi Populer</h2>
+     <p class="text-xl text-gray-400">Temukan tempat-tempat menakjubkan di Banda Neira</p>
+    </div><!-- Filter -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in"><button class="filter-btn active px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition" data-filter="all"> Semua </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="sejarah"> Sejarah </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="alam"> Alam </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="diving"> Diving </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="kuliner"> Kuliner </button>
+    </div><!-- Destinations Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Destination 1 -->
+     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="sejarah">
+      <div class="h-64 relative"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Benteng_Belgica_Banda_Neira.jpg/1200px-Benteng_Belgica_Banda_Neira.jpg" alt="Benteng Belgica" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+       <div class="absolute bottom-4 left-4 right-4 text-center">
+        <p class="text-2xl font-bold">Benteng Belgica</p>
+       </div>
+      </div>
+      <div class="p-6">
+       <h3 class="text-2xl font-bold mb-2">Benteng Belgica</h3>
+       <p class="text-gray-400 mb-4">Benteng bersejarah peninggalan Belanda dengan arsitektur megah</p>
+       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 25.000 </span> <button onclick="openBookingModal('Benteng Belgica')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
+       </div>
+      </div>
+     </div><!-- Destination 2 -->
+     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="diving">
+      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=2070" alt="Diving Banda Neira" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+       <div class="absolute bottom-4 left-4 right-4 text-center">
+        <p class="text-2xl font-bold">Pulau Hatta</p>
+       </div>
+      </div>
+      <div class="p-6">
+       <h3 class="text-2xl font-bold mb-2">Pulau Hatta</h3>
+       <p class="text-gray-400 mb-4">Spot diving terbaik dengan terumbu karang spektakuler</p>
+       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 350.000 </span> <button onclick="openBookingModal('Pulau Hatta')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
+       </div>
+      </div>
+     </div><!-- Destination 3 -->
+     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="alam">
+      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=2070" alt="Gunung Api Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+       <div class="absolute bottom-4 left-4 right-4 text-center">
+        <p class="text-2xl font-bold">Gunung Api</p>
+       </div>
+      </div>
+      <div class="p-6">
+       <h3 class="text-2xl font-bold mb-2">Gunung Api</h3>
+       <p class="text-gray-400 mb-4">Gunung berapi aktif dengan pemandangan memukau</p>
+       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 50.000 </span> <button onclick="openBookingModal('Gunung Api')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
+       </div>
+      </div>
+     </div><!-- Destination 4 -->
+     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="sejarah">
+      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1565173577175-95b0f3d77dbe?q=80&amp;w=2070" alt="Museum Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+       <div class="absolute bottom-4 left-4 right-4 text-center">
+        <p class="text-2xl font-bold">Museum Banda</p>
+       </div>
+      </div>
+      <div class="p-6">
+       <h3 class="text-2xl font-bold mb-2">Museum Banda</h3>
+       <p class="text-gray-400 mb-4">Koleksi artefak sejarah perdagangan rempah</p>
+       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 20.000 </span> <button onclick="openBookingModal('Museum Banda')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
+       </div>
+      </div>
+     </div><!-- Destination 5 -->
+     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="diving">
+      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&amp;w=2070" alt="Wreck Diving" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+       <div class="absolute bottom-4 left-4 right-4 text-center">
+        <p class="text-2xl font-bold">Kapal Karam</p>
+       </div>
+      </div>
+      <div class="p-6">
+       <h3 class="text-2xl font-bold mb-2">Wreck Diving</h3>
+       <p class="text-gray-400 mb-4">Eksplorasi kapal karam bersejarah di dasar laut</p>
+       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 400.000 </span> <button onclick="openBookingModal('Wreck Diving')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
+       </div>
+      </div>
+     </div><!-- Destination 6 -->
+     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="kuliner">
+      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=2070" alt="Kuliner Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+       <div class="absolute bottom-4 left-4 right-4 text-center">
+        <p class="text-2xl font-bold">Kuliner Banda</p>
+       </div>
+      </div>
+      <div class="p-6">
+       <h3 class="text-2xl font-bold mb-2">Wisata Kuliner</h3>
+       <p class="text-gray-400 mb-4">Nikmati kekayaan kuliner khas Banda Neira</p>
+       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 150.000 </span> <button onclick="openBookingModal('Wisata Kuliner')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
+       </div>
+      </div>
+     </div>
+    </div><!-- Virtual Tour Button -->
+    <div class="text-center mt-12 fade-in"><button onclick="openVirtualTour()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"> <i class="fas fa-vr-cardboard mr-2"></i>Virtual Tour 360° </button>
+    </div>
+   </div>
+  </section><!-- Gallery -->
+  <section id="gallery" class="py-20 bg-gradient-to-b from-transparent to-gray-900">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Galeri Foto</h2>
+     <p class="text-xl text-gray-400">Keindahan Banda Neira dalam gambar</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(1)"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=800" alt="Banda Neira 1" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(2)"><img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&amp;w=800" alt="Banda Neira 2" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(3)"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=800" alt="Banda Neira 3" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(4)"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=800" alt="Banda Neira 4" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(5)"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=800" alt="Banda Neira 5" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(6)"><img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&amp;w=800" alt="Banda Neira 6" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(7)"><img src="https://images.unsplash.com/photo-1565173577175-95b0f3d77dbe?q=80&amp;w=800" alt="Banda Neira 7" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(8)"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=800" alt="Banda Neira 8" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+     </div>
+    </div>
+   </div>
+  </section><!-- Events -->
+  <section id="events" class="py-20">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Event &amp; Kegiatan</h2>
+     <p class="text-xl text-gray-400">Acara menarik sepanjang tahun</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="fade-in glass-effect rounded-2xl p-6 card-hover">
+      <div class="text-blue-400 text-5xl mb-4">
+       🎉
+      </div>
+      <h3 class="text-2xl font-bold mb-2">Festival Banda</h3>
+      <p class="text-gray-400 mb-4">Perayaan budaya dan sejarah Banda Neira</p>
+      <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-2"></i> <span>15-17 Agustus 2024</span>
+      </div>
+     </div>
+     <div class="fade-in glass-effect rounded-2xl p-6 card-hover">
+      <div class="text-blue-400 text-5xl mb-4">
+       🏊
+      </div>
+      <h3 class="text-2xl font-bold mb-2">Diving Competition</h3>
+      <p class="text-gray-400 mb-4">Kompetisi menyelam internasional</p>
+      <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-2"></i> <span>10-12 Oktober 2024</span>
+      </div>
+     </div>
+     <div class="fade-in glass-effect rounded-2xl p-6 card-hover">
+      <div class="text-blue-400 text-5xl mb-4">
+       🌶️
+      </div>
+      <h3 class="text-2xl font-bold mb-2">Pesta Pala</h3>
+      <p class="text-gray-400 mb-4">Festival kuliner dan rempah-rempah</p>
+      <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-2"></i> <span>5-7 Desember 2024</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials Carousel -->
+  <section id="testimonials" class="py-20 bg-gradient-to-b from-transparent to-gray-900">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Testimoni Pengunjung</h2>
+     <p class="text-xl text-gray-400">Apa kata mereka tentang Banda Neira</p>
+    </div>
+    <div class="carousel-container" id="testimonialCarousel"><!-- Testimonials will be populated by JavaScript -->
+    </div>
+    <div class="text-center mt-8"><button onclick="scrollToSection('contact')" class="text-blue-400 hover:text-blue-300 transition"> Bagikan pengalaman Anda <i class="fas fa-arrow-right ml-2"></i> </button>
+    </div>
+   </div>
+  </section><!-- Blog -->
+  <section id="blog" class="py-20">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Blog Wisata</h2>
+     <p class="text-xl text-gray-400">Tips dan panduan menjelajahi Banda Neira</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <article class="fade-in glass-effect rounded-2xl overflow-hidden card-hover">
+      <div class="h-48 relative"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=800" alt="Diving Banda Neira" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+      </div>
+      <div class="p-6">
+       <div class="text-sm text-gray-500 mb-2">
+        📅 20 Januari 2024
+       </div>
+       <h3 class="text-xl font-bold mb-2">10 Spot Diving Terbaik di Banda Neira</h3>
+       <p class="text-gray-400 mb-4">Panduan lengkap spot diving dengan keindahan terumbu karang spektakuler...</p><a href="#" class="text-blue-400 hover:text-blue-300 transition"> Baca selengkapnya <i class="fas fa-arrow-right ml-1"></i> </a>
+      </div>
+     </article>
+     <article class="fade-in glass-effect rounded-2xl overflow-hidden card-hover">
+      <div class="h-48 relative"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Benteng_Belgica_Banda_Neira.jpg/800px-Benteng_Belgica_Banda_Neira.jpg" alt="Sejarah Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+      </div>
+      <div class="p-6">
+       <div class="text-sm text-gray-500 mb-2">
+        📅 15 Januari 2024
+       </div>
+       <h3 class="text-xl font-bold mb-2">Jejak Sejarah Perdagangan Rempah</h3>
+       <p class="text-gray-400 mb-4">Menyelusuri sejarah Banda sebagai pusat perdagangan pala dunia...</p><a href="#" class="text-blue-400 hover:text-blue-300 transition"> Baca selengkapnya <i class="fas fa-arrow-right ml-1"></i> </a>
+      </div>
+     </article>
+     <article class="fade-in glass-effect rounded-2xl overflow-hidden card-hover">
+      <div class="h-48 relative"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=800" alt="Kuliner Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
+      </div>
+      <div class="p-6">
+       <div class="text-sm text-gray-500 mb-2">
+        📅 10 Januari 2024
+       </div>
+       <h3 class="text-xl font-bold mb-2">Kuliner Khas yang Wajib Dicoba</h3>
+       <p class="text-gray-400 mb-4">Dari papeda hingga ikan kuah pala, nikmati kelezatan kuliner Banda...</p><a href="#" class="text-blue-400 hover:text-blue-300 transition"> Baca selengkapnya <i class="fas fa-arrow-right ml-1"></i> </a>
+      </div>
+     </article>
+    </div>
+   </div>
+  </section><!-- Map Integration -->
+  <section id="map" class="py-20 bg-gradient-to-b from-transparent to-gray-900">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Lokasi Banda Neira</h2>
+     <p class="text-xl text-gray-400">Temukan kami di peta</p>
+    </div>
+    <div class="fade-in glass-effect rounded-2xl p-8">
+     <div class="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg flex items-center justify-center">
+      <div class="text-center"><i class="fas fa-map-marked-alt text-8xl mb-4"></i>
+       <p class="text-2xl font-bold">Banda Neira, Maluku</p>
+       <p class="text-gray-400 mt-2">Koordinat: -4.5167° S, 129.9000° E</p><button class="mt-6 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full transition"> Buka di Google Maps </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact & Forms -->
+  <section id="contact" class="py-20">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12 fade-in">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h2>
+     <p class="text-xl text-gray-400">Ada pertanyaan? Kami siap membantu</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-12"><!-- Contact Form -->
+     <div class="fade-in glass-effect rounded-2xl p-8">
+      <h3 class="text-2xl font-bold mb-6">Kirim Pesan</h3>
+      <form id="contactForm" onsubmit="handleContactSubmit(event)">
+       <div class="mb-4"><label for="contactName" class="block mb-2 font-semibold">Nama</label> <input type="text" id="contactName" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+       </div>
+       <div class="mb-4"><label for="contactEmail" class="block mb-2 font-semibold">Email</label> <input type="email" id="contactEmail" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+       </div>
+       <div class="mb-4"><label for="contactMessage" class="block mb-2 font-semibold">Pesan</label> <textarea id="contactMessage" required rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition"></textarea>
+       </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"> <span id="contactSubmitText">Kirim Pesan</span> <i id="contactSubmitLoading" class="fas fa-spinner fa-spin hidden ml-2"></i> </button>
+      </form>
+      <div id="contactSuccessMessage" class="hidden mt-4 p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
+       ✅ Pesan berhasil dikirim! Terima kasih.
+      </div>
+     </div><!-- Rating Form -->
+     <div class="fade-in glass-effect rounded-2xl p-8">
+      <h3 class="text-2xl font-bold mb-6">Beri Penilaian</h3>
+      <form id="ratingForm" onsubmit="handleRatingSubmit(event)">
+       <div class="mb-4"><label for="ratingName" class="block mb-2 font-semibold">Nama</label> <input type="text" id="ratingName" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+       </div>
+       <div class="mb-4"><label class="block mb-2 font-semibold">Rating</label>
+        <div class="star-rating" id="starRating"><i class="fas fa-star star" data-rating="1"></i> <i class="fas fa-star star" data-rating="2"></i> <i class="fas fa-star star" data-rating="3"></i> <i class="fas fa-star star" data-rating="4"></i> <i class="fas fa-star star" data-rating="5"></i>
+        </div><input type="hidden" id="ratingValue" value="5">
+       </div>
+       <div class="mb-4"><label for="ratingMessage" class="block mb-2 font-semibold">Pengalaman Anda</label> <textarea id="ratingMessage" required rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition"></textarea>
+       </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"> <span id="ratingSubmitText">Kirim Penilaian</span> <i id="ratingSubmitLoading" class="fas fa-spinner fa-spin hidden ml-2"></i> </button>
+      </form>
+      <div id="ratingSuccessMessage" class="hidden mt-4 p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
+       ✅ Terima kasih atas penilaian Anda!
+      </div>
+     </div>
+    </div><!-- Contact Info -->
+    <div class="grid md:grid-cols-3 gap-8 mt-12 fade-in">
+     <div class="text-center p-6 glass-effect rounded-2xl"><i class="fas fa-map-marker-alt text-4xl text-blue-500 mb-4"></i>
+      <h4 class="font-bold mb-2">Alamat</h4>
+      <p class="text-gray-400">Banda Neira, Kepulauan Banda<br>
+       Maluku, Indonesia</p>
+     </div>
+     <div class="text-center p-6 glass-effect rounded-2xl"><i class="fas fa-phone text-4xl text-blue-500 mb-4"></i>
+      <h4 class="font-bold mb-2">Telepon</h4>
+      <p class="text-gray-400">+62 910 21234<br>
+       +62 812 3456 7890</p>
+     </div>
+     <div class="text-center p-6 glass-effect rounded-2xl"><i class="fas fa-envelope text-4xl text-blue-500 mb-4"></i>
+      <h4 class="font-bold mb-2">Email</h4>
+      <p class="text-gray-400">info@bandaneira.com<br>
+       tour@bandaneira.com</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-900 py-12 border-t border-gray-800">
+   <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+     <div>
+      <h4 class="text-xl font-bold mb-4">Banda Neira Explorer</h4>
+      <p class="text-gray-400">Jelajahi keindahan dan sejarah pulau rempah yang menakjubkan.</p>
+     </div>
+     <div>
+      <h4 class="text-lg font-bold mb-4">Link Cepat</h4>
+      <ul class="space-y-2 text-gray-400">
+       <li><a href="#destinations" class="hover:text-blue-400 transition">Destinasi</a></li>
+       <li><a href="#events" class="hover:text-blue-400 transition">Event</a></li>
+       <li><a href="#blog" class="hover:text-blue-400 transition">Blog</a></li>
+       <li><a href="#contact" class="hover:text-blue-400 transition">Kontak</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-bold mb-4">Layanan</h4>
+      <ul class="space-y-2 text-gray-400">
+       <li><a href="#" class="hover:text-blue-400 transition">Pemesanan Tiket</a></li>
+       <li><a href="#" class="hover:text-blue-400 transition">Paket Wisata</a></li>
+       <li><a href="#" class="hover:text-blue-400 transition">Panduan Wisata</a></li>
+       <li><a href="#" class="hover:text-blue-400 transition">Akomodasi</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-bold mb-4">Ikuti Kami</h4>
+      <div class="flex space-x-4"><a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition"> <i class="fab fa-facebook-f"></i> </a> <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition"> <i class="fab fa-twitter"></i> </a> <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition"> <i class="fab fa-instagram"></i> </a> <a href="#" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition"> <i class="fab fa-youtube"></i> </a>
+      </div>
+      <div class="mt-4 flex space-x-2"><button onclick="shareToSocial('facebook')" class="text-xs px-3 py-1 bg-gray-800 rounded hover:bg-gray-700 transition"> <i class="fas fa-share mr-1"></i>Share </button>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+     <p id="footerText">© 2024 Banda Neira Explorer. Semua hak dilindungi.</p>
+    </div>
+   </div>
+  </footer><!-- Chatbot -->
+  <div id="chatbot">
+   <div class="chat-window" id="chatWindow">
+    <div class="bg-blue-600 p-4 flex items-center justify-between">
+     <div class="flex items-center"><i class="fas fa-robot text-2xl mr-2"></i> <span class="font-bold">Panduan Wisata AI</span>
+     </div><button onclick="toggleChat()" class="hover:bg-blue-700 p-2 rounded transition"> <i class="fas fa-times"></i> </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+     <div class="message bot">
+      👋 Halo! Saya asisten virtual Banda Neira. Ada yang bisa saya bantu?
+     </div>
+    </div>
+    <div class="p-4 border-t border-gray-700">
+     <form id="chatForm" onsubmit="sendChatMessage(event)" class="flex gap-2"><input type="text" id="chatInput" placeholder="Ketik pertanyaan..." class="flex-1 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none"> <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition"> <i class="fas fa-paper-plane"></i> </button>
+     </form>
+    </div>
+   </div><button onclick="toggleChat()" class="bg-blue-600 hover:bg-blue-700 w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-2xl transition transform hover:scale-110"> <i class="fas fa-comment-dots"></i> </button>
+  </div><!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+   <div class="glass-effect rounded-2xl p-8 max-w-md w-full mx-4">
+    <div class="flex items-center justify-between mb-6">
+     <h3 class="text-2xl font-bold">Pemesanan Tiket</h3><button onclick="closeBookingModal()" class="text-2xl hover:text-red-500 transition"> <i class="fas fa-times"></i> </button>
+    </div>
+    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+     <div class="mb-4"><label class="block mb-2 font-semibold">Destinasi</label> <input type="text" id="bookingDestination" readonly class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700">
+     </div>
+     <div class="mb-4"><label for="bookingName" class="block mb-2 font-semibold">Nama</label> <input type="text" id="bookingName" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+     </div>
+     <div class="mb-4"><label for="bookingEmail" class="block mb-2 font-semibold">Email</label> <input type="email" id="bookingEmail" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+     </div>
+     <div class="mb-4"><label for="bookingDate" class="block mb-2 font-semibold">Tanggal Kunjungan</label> <input type="date" id="bookingDate" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+     </div>
+     <div class="mb-6"><label for="bookingGuests" class="block mb-2 font-semibold">Jumlah Pengunjung</label> <input type="number" id="bookingGuests" min="1" value="1" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
+     </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"> <span id="bookingSubmitText">Konfirmasi Pemesanan</span> <i id="bookingSubmitLoading" class="fas fa-spinner fa-spin hidden ml-2"></i> </button>
+    </form>
+    <div id="bookingSuccessMessage" class="hidden mt-4 p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
+     ✅ Pemesanan berhasil! Kami akan mengirim konfirmasi ke email Anda.
+    </div>
+   </div>
+  </div><!-- Video Modal -->
+  <div id="videoModal" class="modal">
+   <div class="bg-black rounded-2xl overflow-hidden max-w-4xl w-full mx-4">
+    <div class="flex items-center justify-between p-4 bg-gray-900">
+     <h3 class="text-xl font-bold">Video Banda Neira</h3><button onclick="closeVideoModal()" class="text-2xl hover:text-red-500 transition"> <i class="fas fa-times"></i> </button>
+    </div>
+    <div class="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center">
+     <div class="text-center"><i class="fas fa-play-circle text-8xl mb-4 text-white opacity-50"></i>
+      <p class="text-2xl">Video Promosi Banda Neira</p>
+      <p class="text-gray-400 mt-2">(Video demo)</p>
+     </div>
+    </div>
+   </div>
+  </div><!-- Image Modal -->
+  <div id="imageModal" class="modal">
+   <div class="max-w-4xl w-full mx-4"><button onclick="closeImageModal()" class="absolute top-4 right-4 text-white text-3xl hover:text-red-500 transition z-10"> <i class="fas fa-times"></i> </button>
+    <div id="imageModalContent" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl aspect-video flex items-center justify-center"><i class="fas fa-image text-9xl"></i>
+    </div>
+   </div>
+  </div><!-- Virtual Tour Modal -->
+  <div id="virtualTourModal" class="modal">
+   <div class="bg-gray-900 rounded-2xl overflow-hidden max-w-6xl w-full mx-4">
+    <div class="flex items-center justify-between p-4 bg-gray-800">
+     <h3 class="text-xl font-bold"><i class="fas fa-vr-cardboard mr-2"></i>Virtual Tour 360°</h3><button onclick="closeVirtualTour()" class="text-2xl hover:text-red-500 transition"> <i class="fas fa-times"></i> </button>
+    </div>
+    <div class="aspect-video bg-gradient-to-br from-cyan-900 to-blue-900 flex items-center justify-center p-8">
+     <div class="text-center"><i class="fas fa-street-view text-9xl mb-6 text-blue-400"></i>
+      <p class="text-3xl font-bold mb-4">Pengalaman Virtual Tour 360°</p>
+      <p class="text-gray-400">Jelajahi Banda Neira secara virtual (Demo)</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            hero_title: "Jelajahi Keindahan Banda Neira",
+            hero_subtitle: "Surga Tersembunyi di Maluku",
+            about_title: "Tentang Banda Neira",
+            about_description: "Banda Neira adalah pulau kecil yang terletak di Kepulauan Banda, Maluku. Dikenal sebagai \"Pulau Rempah\", kawasan ini memiliki sejarah panjang sebagai pusat perdagangan rempah-rempah dunia. Keindahan alam bawah lautnya yang memukau menjadikannya surga bagi para penyelam.",
+            cta_button: "Mulai Petualangan",
+            footer_text: "© 2024 Banda Neira Explorer. Semua hak dilindungi.",
+            background_color: "#0f172a",
+            surface_color: "#1e293b",
+            text_color: "#f1f5f9",
+            primary_action_color: "#3b82f6",
+            secondary_action_color: "#60a5fa",
+            font_family: "Inter",
+            font_size: 16
+        };
+
+        let currentLanguage = 'id';
+        let selectedRating = 5;
+        let recordCount = 0;
+
+        const translations = {
+            id: {
+                heroTitle: "Jelajahi Keindahan Banda Neira",
+                heroSubtitle: "Surga Tersembunyi di Maluku",
+                ctaButton: "Mulai Petualangan"
+            },
+            en: {
+                heroTitle: "Explore the Beauty of Banda Neira",
+                heroSubtitle: "Hidden Paradise in Maluku",
+                ctaButton: "Start Adventure"
+            }
+        };
+
+        // Data Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                recordCount = data.length;
+                renderTestimonials(data);
+            }
+        };
+
+        // Initialize SDK
+        async function initializeApp() {
+            if (window.dataSdk) {
+                const initResult = await window.dataSdk.init(dataHandler);
+                if (!initResult.isOk) {
+                    console.error("Failed to initialize data SDK");
+                }
+            }
+
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange,
+                    mapToCapabilities,
+                    mapToEditPanelValues
+                });
+            }
+        }
+
+        // Config Change Handler
+        async function onConfigChange(config) {
+            const heroTitle = document.getElementById('heroTitle');
+            const heroSubtitle = document.getElementById('heroSubtitle');
+            const aboutTitle = document.getElementById('aboutTitle');
+            const aboutDescription = document.getElementById('aboutDescription');
+            const footerText = document.getElementById('footerText');
+
+            if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+            if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            if (aboutTitle) aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+            if (aboutDescription) aboutDescription.textContent = config.about_description || defaultConfig.about_description;
+            if (footerText) footerText.textContent = config.footer_text || defaultConfig.footer_text;
+
+            document.body.style.background = config.background_color || defaultConfig.background_color;
+            
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseFontStack = 'system-ui, -apple-system, sans-serif';
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+
+            const baseSize = config.font_size || defaultConfig.font_size;
+            document.documentElement.style.fontSize = `${baseSize}px`;
+
+            document.documentElement.style.setProperty('--bg-primary', config.background_color || defaultConfig.background_color);
+            document.documentElement.style.setProperty('--bg-secondary', config.surface_color || defaultConfig.surface_color);
+            document.documentElement.style.setProperty('--text-primary', config.text_color || defaultConfig.text_color);
+            document.documentElement.style.setProperty('--accent-primary', config.primary_action_color || defaultConfig.primary_action_color);
+            document.documentElement.style.setProperty('--accent-secondary', config.secondary_action_color || defaultConfig.secondary_action_color);
+        }
+
+        // Capabilities
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            config.surface_color = value;
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        }
                     },
-                    // Animasi untuk simulasi scroll/reveal
-                    animation: {
-                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
                     },
-                    keyframes: {
-                        slideUp: {
-                            '0%': { opacity: 0, transform: 'translateY(20px)' },
-                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            config.primary_action_color = value;
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            config.secondary_action_color = value;
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        config.font_family = value;
+                        if (window.elementSdk) {
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        config.font_size = value;
+                        if (window.elementSdk) {
+                            window.elementSdk.setConfig({ font_size: value });
                         }
                     }
                 }
-            }
+            };
         }
-    </script>
-    <style>
-        /* Gaya dasar untuk Dark/Light Mode */
-        .light {
-            background-color: theme('colors.bg-light');
-            color: theme('colors.text-dark');
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["hero_title", config.hero_title || defaultConfig.hero_title],
+                ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+                ["about_title", config.about_title || defaultConfig.about_title],
+                ["about_description", config.about_description || defaultConfig.about_description],
+                ["cta_button", config.cta_button || defaultConfig.cta_button],
+                ["footer_text", config.footer_text || defaultConfig.footer_text]
+            ]);
         }
-        .dark {
-            background-color: theme('colors.bg-dark');
-            color: theme('colors.text-light');
-        }
-        /* Sidebar tetap tersembunyi secara default, hanya muncul di mobile */
-        #sidebar-menu {
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(100%);
-        }
-        #sidebar-menu.active {
-            transform: translateX(0);
-        }
-        /* Styling untuk Parallax/Video Background (Simulasi) */
-        .hero-bg {
-            background-image: url('https://placehold.co/1920x1080/003366/FFFFFF?text=Pemandangan+Danau+Como');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efek Parallax */
-            height: 80vh;
-        }
-    </style>
-</head>
-<body class="light font-sans transition-colors duration-500" x-data="{ isMenuOpen: false }">
 
-    <!-- 1.a & 1.g: Header / Navbar (Navigasi Utama & Responsif) -->
-    <header class="sticky top-0 z-40 shadow-lg backdrop-blur-md bg-opacity-80 dark:bg-opacity-80 transition-all duration-300 dark:bg-bg-dark bg-bg-light">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Logo Brand -->
-            <a href="#" class="text-2xl font-bold tracking-wider text-primary dark:text-accent">Northern Italia</a>
-
-            <!-- Navigasi Desktop -->
-            <div class="hidden lg:flex space-x-8 items-center">
-                <a href="#destinasi" class="nav-link">Destinasi</a>
-                <a href="#galeri" class="nav-link">Galeri</a>
-                <a href="#reservasi" class="nav-link">Reservasi</a>
-                <a href="#blog" class="nav-link">Blog</a>
-                <a href="#kontak" class="nav-link">Kontak</a>
-
-                <!-- 1.e: Search Bar Desktop -->
-                <div class="relative">
-                    <input type="text" placeholder="Cari..." class="py-1 px-3 border border-gray-300 dark:border-gray-700 rounded-full text-sm dark:bg-bg-dark bg-bg-light focus:outline-none focus:ring-2 focus:ring-accent transition duration-300">
-                    <button class="absolute right-0 top-0 mt-1 mr-2 text-gray-500 dark:text-gray-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Kontrol Aksi: Dark/Light & Bahasa -->
-            <div class="flex items-center space-x-4">
-                <!-- 2.d & 3.m: Multibahasa (Language Switcher) -->
-                <button id="lang-switcher" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300 text-sm font-medium border border-primary dark:border-accent dark:text-accent text-primary">ID/EN</button>
-
-                <!-- 2.a & 3.p: Dark / Light Mode Toggle -->
-                <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300">
-                    <!-- Icon Light Mode (Sun) -->
-                    <svg id="sun-icon" class="w-6 h-6 hidden text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9c0-.62-.1-1.22-.29-1.78a.99.99 0 00-1.88.58 7 7 0 11-7.85 7.85c-.3-.8-.47-1.66-.47-2.57 0-4.96 4.04-9 9-9z"></path></svg>
-                    <!-- Icon Dark Mode (Moon) -->
-                    <svg id="moon-icon" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M20 15a8 8 0 11-8-8c0 4.41 3.59 8 8 8zM2 12a10 10 0 1020 0 10 10 0 00-20 0z"></path></svg>
-                </button>
-
-                <!-- Tombol Menu Mobile -->
-                <button id="menu-toggle" class="lg:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- 1.d: Sidebar (Mobile) -->
-    <div id="sidebar-menu" class="fixed top-0 right-0 h-full w-64 bg-bg-light dark:bg-gray-900 shadow-2xl z-50 p-6 lg:hidden flex flex-col items-start space-y-4">
-        <button id="close-menu" class="absolute top-4 right-4 p-2 text-primary dark:text-text-light">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-        <h3 class="text-lg font-bold mb-4 mt-8 text-primary dark:text-accent">Menu</h3>
-        <a href="#destinasi" class="sidebar-link">Destinasi</a>
-        <a href="#galeri" class="sidebar-link">Galeri</a>
-        <a href="#reservasi" class="sidebar-link">Reservasi</a>
-        <a href="#blog" class="sidebar-link">Blog</a>
-        <a href="#kontak" class="sidebar-link">Kontak</a>
-        <hr class="w-full border-gray-300 dark:border-gray-700 my-4">
-        <!-- 1.e: Search Bar Mobile -->
-        <input type="text" placeholder="Cari..." class="w-full py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-lg text-sm dark:bg-bg-dark bg-bg-light focus:outline-none focus:ring-2 focus:ring-accent transition duration-300">
-    </div>
-
-
-    <!-- 1.b & 2.i: Hero Section (Bagian Utama Atas dengan Simulasi Video Background) -->
-    <section id="hero" class="hero-bg flex items-center justify-center text-center p-12 lg:p-24 relative overflow-hidden">
-        <!-- Overlay untuk Kontras Teks -->
-        <div class="absolute inset-0 bg-primary opacity-60 dark:opacity-70"></div>
-        <div class="relative z-10">
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-bg-light mb-6 animate-slide-up" style="animation-delay: 0.1s;">
-                Pesona Abadi Northern Italia
-            </h1>
-            <p class="text-xl sm:text-2xl text-text-light mb-10 max-w-4xl mx-auto animate-slide-up" style="animation-delay: 0.3s;">
-                Temukan keindahan Danau Como, pegunungan Dolomiti, dan budaya kaya Milan dalam sentuhan premium.
-            </p>
-            <button class="btn-primary animate-slide-up" style="animation-delay: 0.5s;" onclick="openVirtualTour()">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.55 4.55a.5.5 0 01-.35.85H5.8a.5.5 0 01-.35-.85L10 10m5 0v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7l5-5z"></path></svg>
-                Virtual Tour 360°
-            </button>
-        </div>
-    </section>
-
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-
-        <!-- 3.g: Artikel / Blog Wisata (Bagian Sidebar/Konten Samping) -->
-        <div class="lg:flex lg:space-x-12">
-            <div class="lg:w-3/4">
-
-                <!-- 3.a: Deskripsi Destinasi Utama -->
-                <section id="destinasi" class="mb-20 animate-on-scroll">
-                    <h2 class="section-title">Destinasi Unggulan</h2>
-                    <p class="mb-10 max-w-3xl text-lg dark:text-gray-300">Northern Italy adalah perpaduan sempurna antara kemegahan alam dan warisan budaya. Jelajahi ikon-ikon utama kami.</p>
-
-                    <!-- Kartu Destinasi (3.a, 3.n) -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="bg-bg-light dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img src="https://placehold.co/600x400/003366/FFFFFF?text=Dolomiti" alt="Dolomiti" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <h3 class="text-xl font-semibold mb-2 text-primary dark:text-accent">Dolomiti</h3>
-                            <p class="text-sm dark:text-gray-400 mb-4">Puncak-puncak batu kapur yang menakjubkan, sempurna untuk hiking dan ski. Keindahan alami yang tak tertandingi.</p>
-                            <a href="#" class="text-accent hover:text-primary dark:hover:text-bg-light transition-colors duration-300 font-medium text-sm inline-flex items-center">
-                                Detail & Tiket
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
-                            <div class="mt-4 flex space-x-2">
-                                <span class="share-icon">FB</span>
-                                <span class="share-icon">IG</span>
-                            </div>
-                        </div>
-                        <div class="bg-bg-light dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img src="https://placehold.co/600x400/B8860B/003366?text=Milan" alt="Milan" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <h3 class="text-xl font-semibold mb-2 text-primary dark:text-accent">Milan</h3>
-                            <p class="text-sm dark:text-gray-400 mb-4">Pusat mode dan desain Italia. Jelajahi Duomo yang megah dan galeri seni kelas dunia.</p>
-                            <a href="#" class="text-accent hover:text-primary dark:hover:text-bg-light transition-colors duration-300 font-medium text-sm inline-flex items-center">
-                                Detail & Tiket
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
-                            <div class="mt-4 flex space-x-2">
-                                <span class="share-icon">FB</span>
-                                <span class="share-icon">IG</span>
-                            </div>
-                        </div>
-                        <div class="bg-bg-light dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img src="https://placehold.co/600x400/003366/FFFFFF?text=Venice" alt="Venice" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <h3 class="text-xl font-semibold mb-2 text-primary dark:text-accent">Venesia</h3>
-                            <p class="text-sm dark:text-gray-400 mb-4">Kota kanal romantis yang unik. Nikmati gondola dan sejarah yang tak terhitung.</p>
-                            <a href="#" class="text-accent hover:text-primary dark:hover:text-bg-light transition-colors duration-300 font-medium text-sm inline-flex items-center">
-                                Detail & Tiket
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
-                            <div class="mt-4 flex space-x-2">
-                                <span class="share-icon">FB</span>
-                                <span class="share-icon">IG</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3.j: Filter Destinasi Berdasarkan Kategori -->
-                    <div class="mt-12">
-                        <h4 class="text-lg font-medium mb-3 dark:text-gray-200">Filter Berdasarkan Kategori:</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <button class="filter-btn">Pegunungan</button>
-                            <button class="filter-btn">Kota</button>
-                            <button class="filter-btn">Danau & Air</button>
-                            <button class="filter-btn">Sejarah & Seni</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 3.b & 3.i: Galeri Foto / Video & Virtual Tour -->
-                <section id="galeri" class="mb-20 animate-on-scroll">
-                    <h2 class="section-title">Galeri Keindahan Northern Italia</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <img src="https://placehold.co/300x300/333333/FFFFFF?text=Foto+1" class="gallery-img" alt="Foto Italia Utara 1">
-                        <img src="https://placehold.co/300x300/B8860B/FFFFFF?text=Foto+2" class="gallery-img" alt="Foto Italia Utara 2">
-                        <img src="https://placehold.co/300x300/003366/FFFFFF?text=Foto+3" class="gallery-img" alt="Foto Italia Utara 3">
-                        <img src="https://placehold.co/300x300/1C1C1C/FFFFFF?text=Foto+4" class="gallery-img" alt="Foto Italia Utara 4">
-                    </div>
-                    <div class="text-center mt-8">
-                        <button class="btn-secondary" onclick="openVirtualTour()">
-                            Tonton Virtual Tour (360°)
-                        </button>
-                    </div>
-                </section>
-
-                <!-- 3.c, 3.d, 3.h: Tiket, Jadwal, Fasilitas & Reservasi -->
-                <section id="reservasi" class="mb-20 bg-primary/5 dark:bg-gray-800 p-8 rounded-xl shadow-lg animate-on-scroll">
-                    <h2 class="section-title text-primary dark:text-accent">Pemesanan & Layanan</h2>
-                    <div class="lg:flex lg:space-x-8">
-                        <!-- Informasi Tiket & Fasilitas (3.c, 3.d) -->
-                        <div class="lg:w-1/2 mb-8 lg:mb-0">
-                            <h3 class="text-2xl font-semibold mb-4 dark:text-gray-100">Jadwal & Fasilitas Kunjungan</h3>
-                            <p class="mb-4">Jam Buka: 09:00 - 18:00 (Setiap Hari)</p>
-                            <ul class="list-disc list-inside space-y-2 dark:text-gray-300">
-                                <li>Tiket Dewasa Mulai dari €25</li>
-                                <li>Gratis Parkir Premium</li>
-                                <li>Akses Wi-Fi Kecepatan Tinggi</li>
-                                <li>Pemandu Wisata Multibahasa</li>
-                                <li>Area Istirahat Eksklusif</li>
-                            </ul>
-                            <!-- 3.l: Cuaca & Kondisi Terkini Widget Placeholder -->
-                            <div class="mt-6 p-4 bg-accent/10 dark:bg-accent/20 rounded-lg text-sm">
-                                <p class="font-medium text-accent">Cuaca Terkini: <span id="current-weather">21°C, Cerah.</span></p>
-                                <p class="text-xs dark:text-gray-400">Kondisi: Normal. Tidak ada penundaan jadwal.</p>
-                            </div>
-                        </div>
-
-                        <!-- Form Pemesanan / Reservasi (3.h) -->
-                        <div class="lg:w-1/2">
-                            <h3 class="text-2xl font-semibold mb-4 dark:text-gray-100">Formulir Reservasi</h3>
-                            <form id="reservation-form" class="space-y-4">
-                                <input type="text" placeholder="Nama Lengkap" required class="form-input">
-                                <input type="email" placeholder="Email Aktif" required class="form-input">
-                                <input type="number" placeholder="Jumlah Pengunjung" required class="form-input">
-                                <input type="date" required class="form-input">
-                                <textarea placeholder="Pesan Khusus (Opsional)" class="form-input h-24"></textarea>
-                                <button type="submit" class="btn-primary w-full">Konfirmasi Reservasi</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 3.e: Event & Kegiatan Lokal -->
-                <section id="events" class="mb-20 animate-on-scroll">
-                    <h2 class="section-title">Event & Kegiatan Lokal</h2>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-xl">
-                            <h3 class="text-xl font-semibold mb-2 dark:text-accent">Festival Anggur Veneto</h3>
-                            <p class="text-sm dark:text-gray-400 mb-2">Tanggal: 15-20 Oktober 2026</p>
-                            <p class="dark:text-gray-300">Nikmati koleksi anggur terbaik dari kawasan Veneto. Acara wajib bagi pecinta kuliner dan wine.</p>
-                        </div>
-                        <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-xl">
-                            <h3 class="text-xl font-semibold mb-2 dark:text-accent">Pameran Desain Milan</h3>
-                            <p class="text-sm dark:text-gray-400 mb-2">Tanggal: 5-10 April 2026</p>
-                            <p class="dark:text-gray-300">Inovasi terbaru dalam mode, arsitektur, dan desain di ibukota mode dunia.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 2.g: Counter / Statistik (Bagian Tengah) -->
-                <section id="stats" class="mb-20 text-center py-16 bg-primary dark:bg-gray-900 rounded-xl animate-on-scroll">
-                    <h2 class="text-3xl font-bold mb-10 text-bg-light">Northern Italy dalam Angka</h2>
-                    <div class="grid grid-cols-3 gap-4 text-bg-light">
-                        <div>
-                            <p class="text-4xl font-extrabold text-accent" id="stat-1">0</p>
-                            <p class="mt-2 text-sm uppercase tracking-wider">Destinasi Populer</p>
-                        </div>
-                        <div>
-                            <p class="text-4xl font-extrabold text-accent" id="stat-2">0</p>
-                            <p class="mt-2 text-sm uppercase tracking-wider">Pengunjung Puas</p>
-                        </div>
-                        <div>
-                            <p class="text-4xl font-extrabold text-accent" id="stat-3">0</p>
-                            <p class="mt-2 text-sm uppercase tracking-wider">Tahun Beroperasi</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 2.h: Map Integration Placeholder -->
-                <section id="map" class="mb-20 animate-on-scroll">
-                    <h2 class="section-title">Lokasi Kami</h2>
-                    <div class="h-96 w-full rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
-                        <!-- Placeholder Iframe untuk Google Maps -->
-                        <iframe src="https://maps.google.com/maps?q=Milan,Italy&z=10&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    <p class="mt-4 text-sm dark:text-gray-400 text-center">Jelajahi destinasi kami secara visual di peta interaktif.</p>
-                </section>
-
-                <!-- 1.f & 3.q: Contact Form & Form Saran -->
-                <section id="kontak" class="mb-20 animate-on-scroll">
-                    <h2 class="section-title">Hubungi Kami / Beri Penilaian</h2>
-                    <div class="max-w-3xl mx-auto bg-primary/5 dark:bg-gray-800 p-8 rounded-xl shadow-lg">
-                        <form id="contact-form" class="space-y-4">
-                            <p class="text-lg font-medium mb-4">Tim kami siap membantu perjalanan Anda.</p>
-                            <input type="text" placeholder="Nama Anda" required class="form-input">
-                            <input type="email" placeholder="Email Anda" required class="form-input">
-                            <!-- 3.q: Penilaian/Saran -->
-                            <div class="space-y-2">
-                                <label class="block dark:text-gray-300">Beri Penilaian (1-5 Bintang):</label>
-                                <select class="form-input" required>
-                                    <option>5 Bintang (Sangat Puas)</option>
-                                    <option>4 Bintang (Puas)</option>
-                                    <option>3 Bintang (Cukup)</option>
-                                    <option>2 Bintang (Kurang)</option>
-                                    <option>1 Bintang (Buruk)</option>
-                                </select>
-                            </div>
-                            <textarea placeholder="Saran / Pertanyaan Anda" required class="form-input h-32"></textarea>
-                            <button type="submit" class="btn-primary w-full">Kirim Pesan & Penilaian</button>
-                        </form>
-                    </div>
-                </section>
-
-            </div>
-
-            <!-- 1.d: Sidebar (Tampilan Desktop) -->
-            <div class="lg:w-1/4 mt-12 lg:mt-0">
-                <aside class="space-y-10">
-                    <!-- 3.g: Blog/Artikel Wisata Mini -->
-                    <div id="blog" class="p-6 bg-bg-light dark:bg-gray-800 rounded-xl shadow-md border-t-4 border-accent">
-                        <h3 class="text-xl font-semibold mb-4 text-primary dark:text-accent">Artikel Terbaru</h3>
-                        <ul class="space-y-4">
-                            <li><a href="#" class="sidebar-article-link">5 Danau Tersembunyi di Lombardia</a></li>
-                            <li><a href="#" class="sidebar-article-link">Panduan Kuliner Verona</a></li>
-                            <li><a href="#" class="sidebar-article-link">Sejarah Singkat Dolomiti</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- 3.f & 3.k: Ulasan & Testimoni Pengunjung Otomatis (Carousel Simulation) -->
-                    <div class="p-6 bg-primary dark:bg-gray-900 rounded-xl shadow-md">
-                        <h3 class="text-xl font-semibold mb-4 text-bg-light">Testimoni Terbaik</h3>
-                        <div id="testimonial-carousel" class="relative overflow-hidden h-32">
-                            <!-- Testimoni akan dimasukkan oleh JS -->
-                            <p class="text-text-light italic" id="carousel-text">"Pemandangannya sungguh menakjubkan dan layanan yang diberikan sangat profesional."</p>
-                            <p class="text-accent mt-2 text-right font-medium" id="carousel-author">- Budi S. (Indonesia)</p>
-                        </div>
-                    </div>
-
-                    <!-- Tombol Cepat -->
-                    <div class="space-y-3">
-                        <button class="btn-sidebar-quick-link w-full">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l-2 2m-2-2v10a1 1 0 01-1 1h-3"></path></svg>
-                            Cek Jadwal
-                        </button>
-                        <button class="btn-sidebar-quick-link w-full">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            Fasilitas
-                        </button>
-                    </div>
-
-                </aside>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- 1.c: Footer (Bagian Bawah Website) -->
-    <footer class="bg-primary dark:bg-black text-bg-light py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-accent">Northern Italia</h4>
-                    <p class="text-sm">Eksplorasi destinasi premium dengan layanan terbaik.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Navigasi</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#destinasi" class="footer-link">Destinasi</a></li>
-                        <li><a href="#reservasi" class="footer-link">Pemesanan</a></li>
-                        <li><a href="#kontak" class="footer-link">Kontak</a></li>
-                        <li><a href="#" class="footer-link">Kebijakan Privasi</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Media Sosial</h4>
-                    <div class="flex space-x-3">
-                        <span class="social-icon">F</span>
-                        <span class="social-icon">I</span>
-                        <span class="social-icon">X</span>
-                        <span class="social-icon">Y</span>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Kontak Cepat</h4>
-                    <p class="text-sm">Email: info@northernitalia.com</p>
-                    <p class="text-sm">Telp: +39 012 345 6789</p>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 pt-6 text-center text-sm">
-                &copy; 2024 Northern Italia. All Rights Reserved. Desain oleh Ahli Pemrograman.
-            </div>
-        </div>
-    </footer>
-
-    <!-- 2.c & 3.o: Chatbot / Live Chat Floating Button -->
-    <button id="chat-toggle" class="fixed bottom-6 right-6 p-4 rounded-full bg-accent text-bg-light shadow-xl hover:bg-yellow-700 transition duration-300 z-50">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-    </button>
-
-    <!-- Chatbot Modal -->
-    <div id="chat-modal" class="fixed bottom-20 right-6 w-80 h-96 bg-bg-light dark:bg-gray-800 rounded-xl shadow-2xl z-50 hidden flex-col overflow-hidden">
-        <div class="bg-primary text-bg-light p-4 flex justify-between items-center rounded-t-xl">
-            <h5 class="font-semibold">Panduan Wisata AI</h5>
-            <button id="close-chat" class="text-bg-light hover:text-accent">&times;</button>
-        </div>
-        <div id="chat-body" class="flex-grow p-4 overflow-y-auto space-y-3">
-            <div class="chat-message bot">Halo! Saya GuideAI. Ada yang bisa saya bantu tentang Northern Italy?</div>
-        </div>
-        <div class="p-4 border-t border-gray-200 dark:border-gray-700 flex">
-            <input type="text" id="chat-input" placeholder="Tanyakan sesuatu..." class="flex-grow py-2 px-3 border border-gray-300 dark:border-gray-700 rounded-l-lg text-sm dark:bg-bg-dark focus:outline-none">
-            <button id="chat-send" class="bg-accent text-bg-light p-2 rounded-r-lg hover:bg-yellow-700 transition duration-300">Kirim</button>
-        </div>
-    </div>
-
-
-    <!-- JavaScript untuk Fungsionalitas Modern -->
-    <script>
-        // Variabel global untuk status bahasa
-        let currentLang = 'ID';
-
-        // --- 2.a: Dark / Light Mode Toggle Logic ---
-        const toggleDarkMode = () => {
-            const body = document.body;
-            const isDark = body.classList.toggle('dark');
-            body.classList.toggle('light', !isDark);
-            
-            // Simpan preferensi pengguna di localStorage
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
-            // Update ikon
-            document.getElementById('sun-icon').classList.toggle('hidden', isDark);
-            document.getElementById('moon-icon').classList.toggle('hidden', !isDark);
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        // Muat preferensi saat startup
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                document.body.classList.add('dark');
-                document.body.classList.remove('light');
-                document.getElementById('sun-icon').classList.remove('hidden');
-                document.getElementById('moon-icon').classList.add('hidden');
-            } else {
-                document.body.classList.add('light');
-                document.body.classList.remove('dark');
-                document.getElementById('sun-icon').classList.add('hidden');
-                document.getElementById('moon-icon').classList.remove('hidden');
-            }
-
-            document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
-            initializeInteractions();
-            animateCounters();
-            setupScrollAnimation();
-            startTestimonialCarousel();
-        });
-
-        // --- 1.d: Sidebar / Menu Mobile Logic ---
-        const initializeInteractions = () => {
-            const menuToggle = document.getElementById('menu-toggle');
-            const closeMenu = document.getElementById('close-menu');
-            const sidebar = document.getElementById('sidebar-menu');
-
-            menuToggle.addEventListener('click', () => sidebar.classList.add('active'));
-            closeMenu.addEventListener('click', () => sidebar.classList.remove('active'));
-
-            // Tutup sidebar saat link diklik (untuk navigasi)
-            document.querySelectorAll('.sidebar-link').forEach(link => {
-                link.addEventListener('click', () => sidebar.classList.remove('active'));
-            });
-        };
-        
-        // --- 2.d: Language Switcher Logic (Simulasi) ---
-        document.getElementById('lang-switcher').addEventListener('click', () => {
-            currentLang = currentLang === 'ID' ? 'EN' : 'ID';
-            document.getElementById('lang-switcher').textContent = currentLang === 'ID' ? 'ID/EN' : 'EN/ID';
-            const message = currentLang === 'ID' 
-                ? 'Bahasa diubah ke Indonesia. (Konten simulasi)' 
-                : 'Language switched to English. (Simulated content)';
-            showMessageBox(message);
-        });
-        
-        // --- Custom Modal/Message Box (Pengganti alert()) ---
-        const showMessageBox = (message) => {
-            console.log("Pesan Sistem: " + message);
-            // Dalam implementasi nyata, ini akan menampilkan modal/toast di UI.
-            // Untuk prototipe ini, kita gunakan console log dan placeholder.
-            alert(message); // Menggunakan alert sementara untuk demonstrasi fitur
-        };
-
-        // --- 2.g: Counter / Statistik Animation ---
-        const animateCounter = (elementId, target) => {
-            const element = document.getElementById(elementId);
-            let count = 0;
-            const duration = 1500; // 1.5 detik
-            const step = target / (duration / 10); // Hitung langkah per 10ms
-
-            const timer = setInterval(() => {
-                count += step;
-                if (count >= target) {
-                    clearInterval(timer);
-                    count = target;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-                element.textContent = Math.floor(count).toLocaleString('id-ID');
-            }, 10);
-        };
+            });
+        }, observerOptions);
 
-        const animateCounters = () => {
-            animateCounter('stat-1', 45); // Destinasi Populer
-            animateCounter('stat-2', 12500); // Pengunjung Puas
-            animateCounter('stat-3', 15); // Tahun Beroperasi
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeApp();
 
-        // --- 3.k: Testimonial Carousel Simulation ---
-        const testimonials = [
-            { text: "Pemandangannya sungguh menakjubkan dan layanan yang diberikan sangat profesional.", author: "- Budi S. (Indonesia)" },
-            { text: "A truly unforgettable experience. The Dolomites were breathtaking.", author: "- Jane D. (USA)" },
-            { text: "Il Duomo di Milano è magnifico! Torneremo presto.", author: "- Giovanni R. (Italia)" }
-        ];
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        let currentTestimonial = 0;
-        const startTestimonialCarousel = () => {
-            const textElement = document.getElementById('carousel-text');
-            const authorElement = document.getElementById('carousel-author');
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('navbar-scroll');
+                } else {
+                    navbar.classList.remove('navbar-scroll');
+                }
+            });
 
-            setInterval(() => {
-                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-                const t = testimonials[currentTestimonial];
+            // Counter animation
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
 
-                // Animasi fade out
-                textElement.style.opacity = '0';
-                authorElement.style.opacity = '0';
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
 
-                setTimeout(() => {
-                    textElement.textContent = t.text;
-                    authorElement.textContent = t.author;
-                    // Animasi fade in
-                    textElement.style.opacity = '1';
-                    authorElement.style.opacity = '1';
-                }, 500); // Tunggu setengah detik untuk fade out
-            }, 5000); // Ganti setiap 5 detik
-        };
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            counterObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.5 });
 
-        // --- 2.b: Scroll Animation / Parallax Simulation (Intersection Observer) ---
-        const setupScrollAnimation = () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-slide-up');
-                        entry.target.style.opacity = '1';
-                        observer.unobserve(entry.target);
+                counterObserver.observe(counter);
+            });
+
+            // Star rating
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    selectedRating = parseInt(star.getAttribute('data-rating'));
+                    document.getElementById('ratingValue').value = selectedRating;
+                    updateStars();
+                });
+            });
+
+            updateStars();
+        });
+
+        function updateStars() {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('#themeToggle i');
+            if (document.body.classList.contains('light-mode')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        });
+
+        // Language Switcher
+        document.getElementById('langSwitcher').addEventListener('change', (e) => {
+            currentLanguage = e.target.value;
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const t = translations[currentLanguage];
+            if (window.elementSdk && window.elementSdk.config) {
+                const config = window.elementSdk.config;
+                window.elementSdk.setConfig({
+                    hero_title: t.heroTitle,
+                    hero_subtitle: t.heroSubtitle,
+                    cta_button: t.ctaButton
+                });
+            }
+        }
+
+        // Mobile Menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Filter Destinations
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active', 'bg-blue-600'));
+                btn.classList.add('active', 'bg-blue-600');
+                
+                const filter = btn.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.destination-card');
+                
+                cards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
                     }
                 });
-            }, {
-                rootMargin: '0px',
-                threshold: 0.1
             });
-
-            document.querySelectorAll('.animate-on-scroll').forEach(element => {
-                element.style.opacity = '0'; // Sembunyikan secara default
-                observer.observe(element);
-            });
-        };
-
-        // --- 2.c & 3.o: Chatbot / Live Chat Logic ---
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatModal = document.getElementById('chat-modal');
-        const closeChat = document.getElementById('close-chat');
-        const chatBody = document.getElementById('chat-body');
-        const chatInput = document.getElementById('chat-input');
-        const chatSend = document.getElementById('chat-send');
-
-        chatToggle.addEventListener('click', () => chatModal.classList.toggle('hidden'));
-        closeChat.addEventListener('click', () => chatModal.classList.add('hidden'));
-        chatSend.addEventListener('click', () => handleChat());
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleChat();
         });
 
-        const handleChat = () => {
-            const message = chatInput.value.trim();
-            if (message === '') return;
+        // Forms
+        async function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            if (!window.dataSdk) return;
 
-            // Tampilkan pesan pengguna
-            appendMessage(message, 'user');
-            chatInput.value = '';
+            if (recordCount >= 999) {
+                showToast('Batas maksimum 999 pesan telah tercapai. Silakan hubungi kami melalui telepon atau email.');
+                return;
+            }
 
-            // Simulasi balasan Chatbot
-            setTimeout(() => {
-                let botResponse = 'Saya belum mengerti pertanyaan Anda. Coba tanyakan tentang "tiket" atau "destinasi".';
-                const lowerMsg = message.toLowerCase();
+            const submitBtn = document.getElementById('contactSubmitText');
+            const loadingIcon = document.getElementById('contactSubmitLoading');
+            submitBtn.classList.add('hidden');
+            loadingIcon.classList.remove('hidden');
 
-                if (lowerMsg.includes('tiket') || lowerMsg.includes('harga')) {
-                    botResponse = 'Informasi tiket dapat Anda temukan di bagian Reservasi. Tiket dewasa mulai dari €25.';
-                } else if (lowerMsg.includes('destinasi') || lowerMsg.includes('tempat')) {
-                    botResponse = 'Kami merekomendasikan Dolomiti, Milan, dan Venesia. Ingin detail salah satunya?';
-                } else if (lowerMsg.includes('cuaca')) {
-                    botResponse = document.getElementById('current-weather').textContent;
-                } else if (lowerMsg.includes('terima kasih')) {
-                    botResponse = 'Sama-sama! Senang melayani Anda.';
-                }
-                
-                appendMessage(botResponse, 'bot');
-            }, 1000);
-        };
+            const formData = {
+                id: Date.now().toString(),
+                type: 'contact',
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                message: document.getElementById('contactMessage').value,
+                rating: 0,
+                createdAt: new Date().toISOString()
+            };
 
-        const appendMessage = (text, sender) => {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('chat-message', sender, 'p-3', 'rounded-lg', 'max-w-[80%]', 'shadow-sm');
-            msgDiv.textContent = text;
+            const result = await window.dataSdk.create(formData);
 
-            if (sender === 'user') {
-                msgDiv.classList.add('bg-accent/80', 'text-bg-light', 'ml-auto');
+            submitBtn.classList.remove('hidden');
+            loadingIcon.classList.add('hidden');
+
+            if (result.isOk) {
+                document.getElementById('contactForm').reset();
+                const successMsg = document.getElementById('contactSuccessMessage');
+                successMsg.classList.remove('hidden');
+                setTimeout(() => successMsg.classList.add('hidden'), 5000);
             } else {
-                msgDiv.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-text-dark', 'dark:text-text-light', 'mr-auto');
+                showToast('Gagal mengirim pesan. Silakan coba lagi.');
             }
-            chatBody.appendChild(msgDiv);
-            chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll
-        };
-        
-        // --- 3.i: Virtual Tour Placeholder Function ---
-        const openVirtualTour = () => {
-            showMessageBox("Memuat Virtual Tour 360°... (Ini adalah simulasi, akan diarahkan ke halaman virtual tour di implementasi penuh.)");
-        };
+        }
 
-        // --- Gaya untuk elemen-elemen berulang (didefinisikan dalam JS untuk kebersihan) ---
-        // Catatan: Dalam produksi, ini lebih baik diintegrasikan ke dalam konfigurasi tailwind.config
+        async function handleRatingSubmit(event) {
+            event.preventDefault();
+            
+            if (!window.dataSdk) return;
 
-        const styleSheet = document.createElement("style");
-        styleSheet.textContent = `
-            .nav-link {
-                @apply hover:text-accent dark:hover:text-accent font-medium transition duration-300 p-2 rounded-lg;
+            if (recordCount >= 999) {
+                showToast('Batas maksimum 999 testimoni telah tercapai.');
+                return;
             }
-            .btn-primary {
-                @apply bg-accent text-bg-light font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-700 transition duration-300 flex items-center justify-center mx-auto lg:mx-0;
+
+            const submitBtn = document.getElementById('ratingSubmitText');
+            const loadingIcon = document.getElementById('ratingSubmitLoading');
+            submitBtn.classList.add('hidden');
+            loadingIcon.classList.remove('hidden');
+
+            const formData = {
+                id: Date.now().toString(),
+                type: 'rating',
+                name: document.getElementById('ratingName').value,
+                email: '',
+                message: document.getElementById('ratingMessage').value,
+                rating: selectedRating,
+                createdAt: new Date().toISOString()
+            };
+
+            const result = await window.dataSdk.create(formData);
+
+            submitBtn.classList.remove('hidden');
+            loadingIcon.classList.add('hidden');
+
+            if (result.isOk) {
+                document.getElementById('ratingForm').reset();
+                selectedRating = 5;
+                updateStars();
+                const successMsg = document.getElementById('ratingSuccessMessage');
+                successMsg.classList.remove('hidden');
+                setTimeout(() => successMsg.classList.add('hidden'), 5000);
+            } else {
+                showToast('Gagal mengirim penilaian. Silakan coba lagi.');
             }
-            .btn-secondary {
-                @apply border border-accent text-accent font-bold py-3 px-8 rounded-full shadow-md hover:bg-accent hover:text-bg-light transition duration-300;
+        }
+
+        async function handleBookingSubmit(event) {
+            event.preventDefault();
+            
+            if (!window.dataSdk) return;
+
+            if (recordCount >= 999) {
+                showToast('Batas maksimum 999 pemesanan telah tercapai. Silakan hubungi kami langsung.');
+                return;
             }
-            .btn-sidebar-quick-link {
-                @apply bg-primary/10 dark:bg-gray-700 text-primary dark:text-gray-300 font-medium py-3 px-4 rounded-xl hover:bg-accent/20 dark:hover:bg-accent/40 transition duration-300 flex items-center justify-center text-sm;
+
+            const submitBtn = document.getElementById('bookingSubmitText');
+            const loadingIcon = document.getElementById('bookingSubmitLoading');
+            submitBtn.classList.add('hidden');
+            loadingIcon.classList.remove('hidden');
+
+            const formData = {
+                id: Date.now().toString(),
+                type: 'booking',
+                name: document.getElementById('bookingName').value,
+                email: document.getElementById('bookingEmail').value,
+                message: `Destinasi: ${document.getElementById('bookingDestination').value}, Tanggal: ${document.getElementById('bookingDate').value}, Jumlah: ${document.getElementById('bookingGuests').value}`,
+                rating: 0,
+                createdAt: new Date().toISOString()
+            };
+
+            const result = await window.dataSdk.create(formData);
+
+            submitBtn.classList.remove('hidden');
+            loadingIcon.classList.add('hidden');
+
+            if (result.isOk) {
+                const successMsg = document.getElementById('bookingSuccessMessage');
+                successMsg.classList.remove('hidden');
+                setTimeout(() => {
+                    closeBookingModal();
+                    successMsg.classList.add('hidden');
+                    document.getElementById('bookingForm').reset();
+                }, 3000);
+            } else {
+                showToast('Gagal melakukan pemesanan. Silakan coba lagi.');
             }
-            .section-title {
-                @apply text-3xl sm:text-4xl font-extrabold mb-4 border-b-2 border-accent inline-block pb-1 text-primary dark:text-bg-light;
+        }
+
+        // Testimonials
+        function renderTestimonials(data) {
+            const testimonials = data.filter(item => item.type === 'rating');
+            const carousel = document.getElementById('testimonialCarousel');
+            
+            if (testimonials.length === 0) {
+                carousel.innerHTML = '<div class="text-center text-gray-400 py-8 w-full">Belum ada testimoni. Jadilah yang pertama!</div>';
+                return;
             }
-            .form-input {
-                @apply w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-text-light transition duration-300;
+
+            carousel.innerHTML = testimonials.map(item => `
+                <div class="carousel-item testimonial-card glass-effect rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold">
+                            ${item.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="font-bold">${item.name}</h4>
+                            <div class="flex">
+                                ${Array(item.rating).fill('<i class="fas fa-star text-yellow-400 text-sm"></i>').join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">${item.message}</p>
+                    <div class="text-sm text-gray-500 mt-4">
+                        ${new Date(item.createdAt).toLocaleDateString('id-ID')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modals
+        function openBookingModal(destination) {
+            document.getElementById('bookingDestination').value = destination;
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        function openVideoModal() {
+            document.getElementById('videoModal').classList.add('active');
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('active');
+        }
+
+        function openImageModal(id) {
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        function openVirtualTour() {
+            document.getElementById('virtualTourModal').classList.add('active');
+        }
+
+        function closeVirtualTour() {
+            document.getElementById('virtualTourModal').classList.remove('active');
+        }
+
+        // Chatbot
+        function toggleChat() {
+            document.getElementById('chatWindow').classList.toggle('active');
+        }
+
+        function sendChatMessage(event) {
+            event.preventDefault();
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const chatMessages = document.getElementById('chatMessages');
+                
+                chatMessages.innerHTML += `
+                    <div class="message user">${message}</div>
+                `;
+                
+                input.value = '';
+                
+                setTimeout(() => {
+                    let response = 'Maaf, saya belum memahami pertanyaan Anda. Silakan hubungi tim kami untuk informasi lebih lanjut.';
+                    
+                    if (message.toLowerCase().includes('tiket') || message.toLowerCase().includes('harga')) {
+                        response = 'Harga tiket bervariasi tergantung destinasi. Benteng Belgica: Rp 25.000, Pulau Hatta: Rp 350.000. Anda bisa memesan langsung melalui website kami!';
+                    } else if (message.toLowerCase().includes('diving') || message.toLowerCase().includes('snorkeling')) {
+                        response = 'Banda Neira memiliki spot diving kelas dunia! Pulau Hatta dan lokasi kapal karam sangat direkomendasikan. Waktu terbaik untuk diving adalah April-November.';
+                    } else if (message.toLowerCase().includes('hotel') || message.toLowerCase().includes('penginapan')) {
+                        response = 'Tersedia berbagai pilihan penginapan dari homestay hingga hotel. Kami bisa membantu merekomendasikan tempat menginap sesuai budget Anda.';
+                    }
+                    
+                    chatMessages.innerHTML += `
+                        <div class="message bot">${response}</div>
+                    `;
+                    
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-            .gallery-img {
-                @apply object-cover rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer;
-            }
-            .share-icon {
-                @apply w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-sm font-bold text-primary dark:text-accent hover:bg-accent hover:text-bg-light cursor-pointer transition;
-            }
-            .footer-link {
-                @apply hover:text-accent transition duration-300;
-            }
-            .social-icon {
-                @apply w-8 h-8 flex items-center justify-center rounded-full bg-accent text-primary dark:text-bg-light hover:scale-110 transition duration-300 font-bold;
-            }
-            .sidebar-article-link {
-                @apply text-sm text-primary dark:text-gray-300 hover:text-accent transition duration-300 block font-medium;
+        }
+
+        // Utilities
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function shareToSocial(platform) {
+            const url = window.location.href;
+            const text = 'Jelajahi Keindahan Banda Neira';
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+                    break;
             }
             
-        `;
-        document.head.appendChild(styleSheet);
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-24 right-6 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0d8dc672bab809',t:'MTc2MzUzMjcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
