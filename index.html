@@ -1,1321 +1,376 @@
-<!doctype html>
-<html lang="id">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jelajahi keindahan Banda Neira - Surga tersembunyi di Maluku dengan sejarah dan alam yang memukau">
-  <meta name="keywords" content="Banda Neira, wisata Maluku, pulau rempah, diving, snorkeling, benteng kolonial">
-  <title>Banda Neira Explorer - Jelajahi Keindahan Pulau Rempah</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Laluna Sivia Ramadhani</title>
+    <meta name="description" content="Portofolio Laluna Sivia Ramadhani - Calon DPH MPK SMAN 1 Subang">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
         body {
-            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.5;
         }
-
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #60a5fa;
-        }
-
-        body.light-mode {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --accent-primary: #2563eb;
-            --accent-secondary: #3b82f6;
-        }
-
-        body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        body.light-mode .glass-effect {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .navbar-scroll {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-mode .navbar-scroll {
-            background: rgba(248, 250, 252, 0.95);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .star-rating {
-            display: flex;
-            gap: 0.25rem;
-        }
-
-        .star {
-            cursor: pointer;
-            color: #94a3b8;
-            transition: color 0.2s;
-        }
-
-        .star.active {
-            color: #fbbf24;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .float-animation {
+        .animate-float {
             animation: float 6s ease-in-out infinite;
         }
-
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-        }
-
-        #chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .chat-window {
-            display: none;
-            width: 350px;
-            height: 500px;
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .chat-window.active {
-            display: flex;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            border-radius: 8px;
-            max-width: 80%;
-        }
-
-        .message.bot {
-            background: var(--accent-primary);
-            color: white;
-            margin-right: auto;
-        }
-
-        .message.user {
-            background: var(--bg-primary);
-            margin-left: auto;
-        }
-
-        .weather-widget {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 16px;
-            padding: 1.5rem;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .chat-window {
-                width: calc(100% - 40px);
-                right: 20px;
-            }
-        }
-
-        .counter {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .testimonial-card {
-            min-width: 300px;
-            max-width: 400px;
-        }
-
-        .carousel-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 1.5rem;
-            padding: 1rem 0;
-            scrollbar-width: none;
-        }
-
-        .carousel-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-item {
-            scroll-snap-align: start;
-            flex-shrink: 0;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
     </style>
-  <style>@view-transition { navigation: auto; }</style>
- </head>
- <body><!-- Navbar -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-   <div class="container mx-auto px-6 py-4">
-    <div class="flex items-center justify-between">
-     <div class="flex items-center space-x-2">
-      <svg class="w-10 h-10 text-blue-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-      </svg><span class="text-2xl font-bold">Banda Neira</span>
-     </div><!-- Desktop Menu -->
-     <div class="hidden md:flex items-center space-x-8"><a href="#home" class="hover:text-blue-400 transition">Beranda</a> <a href="#destinations" class="hover:text-blue-400 transition">Destinasi</a> <a href="#gallery" class="hover:text-blue-400 transition">Galeri</a> <a href="#events" class="hover:text-blue-400 transition">Event</a> <a href="#blog" class="hover:text-blue-400 transition">Blog</a> <a href="#contact" class="hover:text-blue-400 transition">Kontak</a> <!-- Language Switcher --> <select id="langSwitcher" class="bg-transparent border border-gray-600 rounded px-3 py-1 text-sm"> <option value="id">🇮🇩 ID</option> <option value="en">🇬🇧 EN</option> </select> <!-- Dark/Light Mode Toggle --> <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-700 transition"> <i class="fas fa-moon"></i> </button>
-     </div><!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden text-2xl"> <i class="fas fa-bars"></i> </button>
-    </div><!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-4"><a href="#home" class="block hover:text-blue-400 transition">Beranda</a> <a href="#destinations" class="block hover:text-blue-400 transition">Destinasi</a> <a href="#gallery" class="block hover:text-blue-400 transition">Galeri</a> <a href="#events" class="block hover:text-blue-400 transition">Event</a> <a href="#blog" class="block hover:text-blue-400 transition">Blog</a> <a href="#contact" class="block hover:text-blue-400 transition">Kontak</a>
-    </div>
-   </div>
-  </nav><!-- Hero Section -->
-  <section id="home" class="relative min-h-screen flex items-center justify-center parallax" style="background: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.5)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=2070') center/cover;">
-   <div class="container mx-auto px-6 text-center relative z-10">
-    <h1 id="heroTitle" class="text-5xl md:text-7xl font-bold mb-6 fade-in float-animation">Jelajahi Keindahan Banda Neira</h1>
-    <p id="heroSubtitle" class="text-xl md:text-2xl mb-8 text-gray-300 fade-in">Surga Tersembunyi di Maluku</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in"><button onclick="scrollToSection('destinations')" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"> <i class="fas fa-compass mr-2"></i>Mulai Petualangan </button> <button onclick="openVideoModal()" class="glass-effect px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"> <i class="fas fa-play mr-2"></i>Tonton Video </button>
-    </div><!-- Search Bar -->
-    <div class="mt-12 max-w-2xl mx-auto">
-     <div class="glass-effect rounded-full flex items-center px-6 py-3"><i class="fas fa-search text-gray-400 mr-3"></i> <input type="text" id="searchBar" placeholder="Cari destinasi, event, atau aktivitas..." class="bg-transparent flex-1 outline-none"> <button class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full ml-3 transition"> Cari </button>
-     </div>
-    </div>
-   </div><!-- Scroll Indicator -->
-   <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"><i class="fas fa-chevron-down text-3xl"></i>
-   </div>
-  </section><!-- Statistics Counter -->
-  <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-400">
-   <div class="container mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-     <div class="fade-in">
-      <div class="counter text-4xl md:text-5xl font-bold" data-target="15">
-       0
-      </div>
-      <p class="mt-2 text-lg">Destinasi Wisata</p>
-     </div>
-     <div class="fade-in">
-      <div class="counter text-4xl md:text-5xl font-bold" data-target="5000">
-       0
-      </div>
-      <p class="mt-2 text-lg">Pengunjung/Tahun</p>
-     </div>
-     <div class="fade-in">
-      <div class="counter text-4xl md:text-5xl font-bold" data-target="12">
-       0
-      </div>
-      <p class="mt-2 text-lg">Event Tahunan</p>
-     </div>
-     <div class="fade-in">
-      <div class="counter text-4xl md:text-5xl font-bold" data-target="98">
-       0
-      </div>
-      <p class="mt-2 text-lg">Kepuasan (%)</p>
-     </div>
-    </div>
-   </div>
-  </section><!-- About Section -->
-  <section id="about" class="py-20">
-   <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-     <div class="fade-in">
-      <h2 id="aboutTitle" class="text-4xl md:text-5xl font-bold mb-6">Tentang Banda Neira</h2>
-      <p id="aboutDescription" class="text-lg text-gray-400 mb-6 leading-relaxed">Banda Neira adalah pulau kecil yang terletak di Kepulauan Banda, Maluku. Dikenal sebagai "Pulau Rempah", kawasan ini memiliki sejarah panjang sebagai pusat perdagangan rempah-rempah dunia. Keindahan alam bawah lautnya yang memukau menjadikannya surga bagi para penyelam.</p>
-      <div class="grid grid-cols-2 gap-4 mb-6">
-       <div class="p-4 glass-effect rounded-lg"><i class="fas fa-history text-3xl text-blue-500 mb-2"></i>
-        <h3 class="font-semibold mb-1">Sejarah Kaya</h3>
-        <p class="text-sm text-gray-400">Warisan kolonial</p>
-       </div>
-       <div class="p-4 glass-effect rounded-lg"><i class="fas fa-water text-3xl text-blue-500 mb-2"></i>
-        <h3 class="font-semibold mb-1">Diving Paradise</h3>
-        <p class="text-sm text-gray-400">Terumbu karang indah</p>
-       </div>
-      </div><button onclick="scrollToSection('destinations')" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full font-semibold transition transform hover:scale-105"> Jelajahi Lebih Lanjut </button>
-     </div>
-     <div class="fade-in">
-      <div class="relative rounded-2xl overflow-hidden shadow-2xl"><img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&amp;w=2070" alt="Banda Neira Island" class="w-full h-96 object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Weather Widget -->
-  <section class="py-8 bg-gradient-to-b from-transparent to-gray-900">
-   <div class="container mx-auto px-6">
-    <div class="weather-widget max-w-md mx-auto text-center fade-in">
-     <h3 class="text-2xl font-bold mb-4"><i class="fas fa-cloud-sun mr-2"></i>Cuaca Hari Ini</h3>
-     <div class="flex items-center justify-center gap-6">
-      <div class="text-6xl">
-       ☀️
-      </div>
-      <div class="text-left">
-       <div class="text-5xl font-bold">
-        28°C
-       </div>
-       <p class="text-lg">Cerah Berawan</p>
-       <p class="text-sm opacity-80">Angin: 12 km/h | Kelembaban: 75%</p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Destinations -->
-  <section id="destinations" class="py-20">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Destinasi Populer</h2>
-     <p class="text-xl text-gray-400">Temukan tempat-tempat menakjubkan di Banda Neira</p>
-    </div><!-- Filter -->
-    <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in"><button class="filter-btn active px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition" data-filter="all"> Semua </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="sejarah"> Sejarah </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="alam"> Alam </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="diving"> Diving </button> <button class="filter-btn px-6 py-2 rounded-full glass-effect hover:bg-blue-600 transition" data-filter="kuliner"> Kuliner </button>
-    </div><!-- Destinations Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Destination 1 -->
-     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="sejarah">
-      <div class="h-64 relative"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Benteng_Belgica_Banda_Neira.jpg/1200px-Benteng_Belgica_Banda_Neira.jpg" alt="Benteng Belgica" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-       <div class="absolute bottom-4 left-4 right-4 text-center">
-        <p class="text-2xl font-bold">Benteng Belgica</p>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-2xl font-bold mb-2">Benteng Belgica</h3>
-       <p class="text-gray-400 mb-4">Benteng bersejarah peninggalan Belanda dengan arsitektur megah</p>
-       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 25.000 </span> <button onclick="openBookingModal('Benteng Belgica')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
-       </div>
-      </div>
-     </div><!-- Destination 2 -->
-     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="diving">
-      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=2070" alt="Diving Banda Neira" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-       <div class="absolute bottom-4 left-4 right-4 text-center">
-        <p class="text-2xl font-bold">Pulau Hatta</p>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-2xl font-bold mb-2">Pulau Hatta</h3>
-       <p class="text-gray-400 mb-4">Spot diving terbaik dengan terumbu karang spektakuler</p>
-       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 350.000 </span> <button onclick="openBookingModal('Pulau Hatta')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
-       </div>
-      </div>
-     </div><!-- Destination 3 -->
-     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="alam">
-      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=2070" alt="Gunung Api Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-       <div class="absolute bottom-4 left-4 right-4 text-center">
-        <p class="text-2xl font-bold">Gunung Api</p>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-2xl font-bold mb-2">Gunung Api</h3>
-       <p class="text-gray-400 mb-4">Gunung berapi aktif dengan pemandangan memukau</p>
-       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 50.000 </span> <button onclick="openBookingModal('Gunung Api')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
-       </div>
-      </div>
-     </div><!-- Destination 4 -->
-     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="sejarah">
-      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1565173577175-95b0f3d77dbe?q=80&amp;w=2070" alt="Museum Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-       <div class="absolute bottom-4 left-4 right-4 text-center">
-        <p class="text-2xl font-bold">Museum Banda</p>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-2xl font-bold mb-2">Museum Banda</h3>
-       <p class="text-gray-400 mb-4">Koleksi artefak sejarah perdagangan rempah</p>
-       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 20.000 </span> <button onclick="openBookingModal('Museum Banda')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
-       </div>
-      </div>
-     </div><!-- Destination 5 -->
-     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="diving">
-      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&amp;w=2070" alt="Wreck Diving" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-       <div class="absolute bottom-4 left-4 right-4 text-center">
-        <p class="text-2xl font-bold">Kapal Karam</p>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-2xl font-bold mb-2">Wreck Diving</h3>
-       <p class="text-gray-400 mb-4">Eksplorasi kapal karam bersejarah di dasar laut</p>
-       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 400.000 </span> <button onclick="openBookingModal('Wreck Diving')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
-       </div>
-      </div>
-     </div><!-- Destination 6 -->
-     <div class="destination-card fade-in card-hover glass-effect rounded-2xl overflow-hidden" data-category="kuliner">
-      <div class="h-64 relative"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=2070" alt="Kuliner Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-       <div class="absolute bottom-4 left-4 right-4 text-center">
-        <p class="text-2xl font-bold">Kuliner Banda</p>
-       </div>
-      </div>
-      <div class="p-6">
-       <h3 class="text-2xl font-bold mb-2">Wisata Kuliner</h3>
-       <p class="text-gray-400 mb-4">Nikmati kekayaan kuliner khas Banda Neira</p>
-       <div class="flex items-center justify-between"><span class="text-blue-400 font-semibold"> <i class="fas fa-ticket-alt mr-1"></i>Rp 150.000 </span> <button onclick="openBookingModal('Wisata Kuliner')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-sm transition"> Pesan Tiket </button>
-       </div>
-      </div>
-     </div>
-    </div><!-- Virtual Tour Button -->
-    <div class="text-center mt-12 fade-in"><button onclick="openVirtualTour()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 rounded-full text-lg font-semibold transition transform hover:scale-105"> <i class="fas fa-vr-cardboard mr-2"></i>Virtual Tour 360° </button>
-    </div>
-   </div>
-  </section><!-- Gallery -->
-  <section id="gallery" class="py-20 bg-gradient-to-b from-transparent to-gray-900">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Galeri Foto</h2>
-     <p class="text-xl text-gray-400">Keindahan Banda Neira dalam gambar</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(1)"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=800" alt="Banda Neira 1" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(2)"><img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&amp;w=800" alt="Banda Neira 2" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(3)"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=800" alt="Banda Neira 3" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(4)"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=800" alt="Banda Neira 4" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(5)"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&amp;w=800" alt="Banda Neira 5" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(6)"><img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&amp;w=800" alt="Banda Neira 6" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(7)"><img src="https://images.unsplash.com/photo-1565173577175-95b0f3d77dbe?q=80&amp;w=800" alt="Banda Neira 7" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-     <div class="fade-in aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition shadow-lg" onclick="openImageModal(8)"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=800" alt="Banda Neira 8" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-     </div>
-    </div>
-   </div>
-  </section><!-- Events -->
-  <section id="events" class="py-20">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Event &amp; Kegiatan</h2>
-     <p class="text-xl text-gray-400">Acara menarik sepanjang tahun</p>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-     <div class="fade-in glass-effect rounded-2xl p-6 card-hover">
-      <div class="text-blue-400 text-5xl mb-4">
-       🎉
-      </div>
-      <h3 class="text-2xl font-bold mb-2">Festival Banda</h3>
-      <p class="text-gray-400 mb-4">Perayaan budaya dan sejarah Banda Neira</p>
-      <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-2"></i> <span>15-17 Agustus 2024</span>
-      </div>
-     </div>
-     <div class="fade-in glass-effect rounded-2xl p-6 card-hover">
-      <div class="text-blue-400 text-5xl mb-4">
-       🏊
-      </div>
-      <h3 class="text-2xl font-bold mb-2">Diving Competition</h3>
-      <p class="text-gray-400 mb-4">Kompetisi menyelam internasional</p>
-      <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-2"></i> <span>10-12 Oktober 2024</span>
-      </div>
-     </div>
-     <div class="fade-in glass-effect rounded-2xl p-6 card-hover">
-      <div class="text-blue-400 text-5xl mb-4">
-       🌶️
-      </div>
-      <h3 class="text-2xl font-bold mb-2">Pesta Pala</h3>
-      <p class="text-gray-400 mb-4">Festival kuliner dan rempah-rempah</p>
-      <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-2"></i> <span>5-7 Desember 2024</span>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Testimonials Carousel -->
-  <section id="testimonials" class="py-20 bg-gradient-to-b from-transparent to-gray-900">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Testimoni Pengunjung</h2>
-     <p class="text-xl text-gray-400">Apa kata mereka tentang Banda Neira</p>
-    </div>
-    <div class="carousel-container" id="testimonialCarousel"><!-- Testimonials will be populated by JavaScript -->
-    </div>
-    <div class="text-center mt-8"><button onclick="scrollToSection('contact')" class="text-blue-400 hover:text-blue-300 transition"> Bagikan pengalaman Anda <i class="fas fa-arrow-right ml-2"></i> </button>
-    </div>
-   </div>
-  </section><!-- Blog -->
-  <section id="blog" class="py-20">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Blog Wisata</h2>
-     <p class="text-xl text-gray-400">Tips dan panduan menjelajahi Banda Neira</p>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-     <article class="fade-in glass-effect rounded-2xl overflow-hidden card-hover">
-      <div class="h-48 relative"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&amp;w=800" alt="Diving Banda Neira" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-      </div>
-      <div class="p-6">
-       <div class="text-sm text-gray-500 mb-2">
-        📅 20 Januari 2024
-       </div>
-       <h3 class="text-xl font-bold mb-2">10 Spot Diving Terbaik di Banda Neira</h3>
-       <p class="text-gray-400 mb-4">Panduan lengkap spot diving dengan keindahan terumbu karang spektakuler...</p><a href="#" class="text-blue-400 hover:text-blue-300 transition"> Baca selengkapnya <i class="fas fa-arrow-right ml-1"></i> </a>
-      </div>
-     </article>
-     <article class="fade-in glass-effect rounded-2xl overflow-hidden card-hover">
-      <div class="h-48 relative"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Benteng_Belgica_Banda_Neira.jpg/800px-Benteng_Belgica_Banda_Neira.jpg" alt="Sejarah Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-      </div>
-      <div class="p-6">
-       <div class="text-sm text-gray-500 mb-2">
-        📅 15 Januari 2024
-       </div>
-       <h3 class="text-xl font-bold mb-2">Jejak Sejarah Perdagangan Rempah</h3>
-       <p class="text-gray-400 mb-4">Menyelusuri sejarah Banda sebagai pusat perdagangan pala dunia...</p><a href="#" class="text-blue-400 hover:text-blue-300 transition"> Baca selengkapnya <i class="fas fa-arrow-right ml-1"></i> </a>
-      </div>
-     </article>
-     <article class="fade-in glass-effect rounded-2xl overflow-hidden card-hover">
-      <div class="h-48 relative"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&amp;w=800" alt="Kuliner Banda" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image not available'; this.style.display='none';">
-      </div>
-      <div class="p-6">
-       <div class="text-sm text-gray-500 mb-2">
-        📅 10 Januari 2024
-       </div>
-       <h3 class="text-xl font-bold mb-2">Kuliner Khas yang Wajib Dicoba</h3>
-       <p class="text-gray-400 mb-4">Dari papeda hingga ikan kuah pala, nikmati kelezatan kuliner Banda...</p><a href="#" class="text-blue-400 hover:text-blue-300 transition"> Baca selengkapnya <i class="fas fa-arrow-right ml-1"></i> </a>
-      </div>
-     </article>
-    </div>
-   </div>
-  </section><!-- Map Integration -->
-  <section id="map" class="py-20 bg-gradient-to-b from-transparent to-gray-900">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Lokasi Banda Neira</h2>
-     <p class="text-xl text-gray-400">Temukan kami di peta</p>
-    </div>
-    <div class="fade-in glass-effect rounded-2xl p-8">
-     <div class="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg flex items-center justify-center">
-      <div class="text-center"><i class="fas fa-map-marked-alt text-8xl mb-4"></i>
-       <p class="text-2xl font-bold">Banda Neira, Maluku</p>
-       <p class="text-gray-400 mt-2">Koordinat: -4.5167° S, 129.9000° E</p><button class="mt-6 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full transition"> Buka di Google Maps </button>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Contact & Forms -->
-  <section id="contact" class="py-20">
-   <div class="container mx-auto px-6">
-    <div class="text-center mb-12 fade-in">
-     <h2 class="text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h2>
-     <p class="text-xl text-gray-400">Ada pertanyaan? Kami siap membantu</p>
-    </div>
-    <div class="grid lg:grid-cols-2 gap-12"><!-- Contact Form -->
-     <div class="fade-in glass-effect rounded-2xl p-8">
-      <h3 class="text-2xl font-bold mb-6">Kirim Pesan</h3>
-      <form id="contactForm" onsubmit="handleContactSubmit(event)">
-       <div class="mb-4"><label for="contactName" class="block mb-2 font-semibold">Nama</label> <input type="text" id="contactName" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-       </div>
-       <div class="mb-4"><label for="contactEmail" class="block mb-2 font-semibold">Email</label> <input type="email" id="contactEmail" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-       </div>
-       <div class="mb-4"><label for="contactMessage" class="block mb-2 font-semibold">Pesan</label> <textarea id="contactMessage" required rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition"></textarea>
-       </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"> <span id="contactSubmitText">Kirim Pesan</span> <i id="contactSubmitLoading" class="fas fa-spinner fa-spin hidden ml-2"></i> </button>
-      </form>
-      <div id="contactSuccessMessage" class="hidden mt-4 p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
-       ✅ Pesan berhasil dikirim! Terima kasih.
-      </div>
-     </div><!-- Rating Form -->
-     <div class="fade-in glass-effect rounded-2xl p-8">
-      <h3 class="text-2xl font-bold mb-6">Beri Penilaian</h3>
-      <form id="ratingForm" onsubmit="handleRatingSubmit(event)">
-       <div class="mb-4"><label for="ratingName" class="block mb-2 font-semibold">Nama</label> <input type="text" id="ratingName" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-       </div>
-       <div class="mb-4"><label class="block mb-2 font-semibold">Rating</label>
-        <div class="star-rating" id="starRating"><i class="fas fa-star star" data-rating="1"></i> <i class="fas fa-star star" data-rating="2"></i> <i class="fas fa-star star" data-rating="3"></i> <i class="fas fa-star star" data-rating="4"></i> <i class="fas fa-star star" data-rating="5"></i>
-        </div><input type="hidden" id="ratingValue" value="5">
-       </div>
-       <div class="mb-4"><label for="ratingMessage" class="block mb-2 font-semibold">Pengalaman Anda</label> <textarea id="ratingMessage" required rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition"></textarea>
-       </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"> <span id="ratingSubmitText">Kirim Penilaian</span> <i id="ratingSubmitLoading" class="fas fa-spinner fa-spin hidden ml-2"></i> </button>
-      </form>
-      <div id="ratingSuccessMessage" class="hidden mt-4 p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
-       ✅ Terima kasih atas penilaian Anda!
-      </div>
-     </div>
-    </div><!-- Contact Info -->
-    <div class="grid md:grid-cols-3 gap-8 mt-12 fade-in">
-     <div class="text-center p-6 glass-effect rounded-2xl"><i class="fas fa-map-marker-alt text-4xl text-blue-500 mb-4"></i>
-      <h4 class="font-bold mb-2">Alamat</h4>
-      <p class="text-gray-400">Banda Neira, Kepulauan Banda<br>
-       Maluku, Indonesia</p>
-     </div>
-     <div class="text-center p-6 glass-effect rounded-2xl"><i class="fas fa-phone text-4xl text-blue-500 mb-4"></i>
-      <h4 class="font-bold mb-2">Telepon</h4>
-      <p class="text-gray-400">+62 910 21234<br>
-       +62 812 3456 7890</p>
-     </div>
-     <div class="text-center p-6 glass-effect rounded-2xl"><i class="fas fa-envelope text-4xl text-blue-500 mb-4"></i>
-      <h4 class="font-bold mb-2">Email</h4>
-      <p class="text-gray-400">info@bandaneira.com<br>
-       tour@bandaneira.com</p>
-     </div>
-    </div>
-   </div>
-  </section><!-- Footer -->
-  <footer class="bg-gray-900 py-12 border-t border-gray-800">
-   <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-4 gap-8 mb-8">
-     <div>
-      <h4 class="text-xl font-bold mb-4">Banda Neira Explorer</h4>
-      <p class="text-gray-400">Jelajahi keindahan dan sejarah pulau rempah yang menakjubkan.</p>
-     </div>
-     <div>
-      <h4 class="text-lg font-bold mb-4">Link Cepat</h4>
-      <ul class="space-y-2 text-gray-400">
-       <li><a href="#destinations" class="hover:text-blue-400 transition">Destinasi</a></li>
-       <li><a href="#events" class="hover:text-blue-400 transition">Event</a></li>
-       <li><a href="#blog" class="hover:text-blue-400 transition">Blog</a></li>
-       <li><a href="#contact" class="hover:text-blue-400 transition">Kontak</a></li>
-      </ul>
-     </div>
-     <div>
-      <h4 class="text-lg font-bold mb-4">Layanan</h4>
-      <ul class="space-y-2 text-gray-400">
-       <li><a href="#" class="hover:text-blue-400 transition">Pemesanan Tiket</a></li>
-       <li><a href="#" class="hover:text-blue-400 transition">Paket Wisata</a></li>
-       <li><a href="#" class="hover:text-blue-400 transition">Panduan Wisata</a></li>
-       <li><a href="#" class="hover:text-blue-400 transition">Akomodasi</a></li>
-      </ul>
-     </div>
-     <div>
-      <h4 class="text-lg font-bold mb-4">Ikuti Kami</h4>
-      <div class="flex space-x-4"><a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition"> <i class="fab fa-facebook-f"></i> </a> <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition"> <i class="fab fa-twitter"></i> </a> <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition"> <i class="fab fa-instagram"></i> </a> <a href="#" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition"> <i class="fab fa-youtube"></i> </a>
-      </div>
-      <div class="mt-4 flex space-x-2"><button onclick="shareToSocial('facebook')" class="text-xs px-3 py-1 bg-gray-800 rounded hover:bg-gray-700 transition"> <i class="fas fa-share mr-1"></i>Share </button>
-      </div>
-     </div>
-    </div>
-    <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-     <p id="footerText">© 2024 Banda Neira Explorer. Semua hak dilindungi.</p>
-    </div>
-   </div>
-  </footer><!-- Chatbot -->
-  <div id="chatbot">
-   <div class="chat-window" id="chatWindow">
-    <div class="bg-blue-600 p-4 flex items-center justify-between">
-     <div class="flex items-center"><i class="fas fa-robot text-2xl mr-2"></i> <span class="font-bold">Panduan Wisata AI</span>
-     </div><button onclick="toggleChat()" class="hover:bg-blue-700 p-2 rounded transition"> <i class="fas fa-times"></i> </button>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-     <div class="message bot">
-      👋 Halo! Saya asisten virtual Banda Neira. Ada yang bisa saya bantu?
-     </div>
-    </div>
-    <div class="p-4 border-t border-gray-700">
-     <form id="chatForm" onsubmit="sendChatMessage(event)" class="flex gap-2"><input type="text" id="chatInput" placeholder="Ketik pertanyaan..." class="flex-1 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none"> <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition"> <i class="fas fa-paper-plane"></i> </button>
-     </form>
-    </div>
-   </div><button onclick="toggleChat()" class="bg-blue-600 hover:bg-blue-700 w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-2xl transition transform hover:scale-110"> <i class="fas fa-comment-dots"></i> </button>
-  </div><!-- Booking Modal -->
-  <div id="bookingModal" class="modal">
-   <div class="glass-effect rounded-2xl p-8 max-w-md w-full mx-4">
-    <div class="flex items-center justify-between mb-6">
-     <h3 class="text-2xl font-bold">Pemesanan Tiket</h3><button onclick="closeBookingModal()" class="text-2xl hover:text-red-500 transition"> <i class="fas fa-times"></i> </button>
-    </div>
-    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
-     <div class="mb-4"><label class="block mb-2 font-semibold">Destinasi</label> <input type="text" id="bookingDestination" readonly class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700">
-     </div>
-     <div class="mb-4"><label for="bookingName" class="block mb-2 font-semibold">Nama</label> <input type="text" id="bookingName" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-     </div>
-     <div class="mb-4"><label for="bookingEmail" class="block mb-2 font-semibold">Email</label> <input type="email" id="bookingEmail" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-     </div>
-     <div class="mb-4"><label for="bookingDate" class="block mb-2 font-semibold">Tanggal Kunjungan</label> <input type="date" id="bookingDate" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-     </div>
-     <div class="mb-6"><label for="bookingGuests" class="block mb-2 font-semibold">Jumlah Pengunjung</label> <input type="number" id="bookingGuests" min="1" value="1" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:outline-none transition">
-     </div><button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"> <span id="bookingSubmitText">Konfirmasi Pemesanan</span> <i id="bookingSubmitLoading" class="fas fa-spinner fa-spin hidden ml-2"></i> </button>
-    </form>
-    <div id="bookingSuccessMessage" class="hidden mt-4 p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
-     ✅ Pemesanan berhasil! Kami akan mengirim konfirmasi ke email Anda.
-    </div>
-   </div>
-  </div><!-- Video Modal -->
-  <div id="videoModal" class="modal">
-   <div class="bg-black rounded-2xl overflow-hidden max-w-4xl w-full mx-4">
-    <div class="flex items-center justify-between p-4 bg-gray-900">
-     <h3 class="text-xl font-bold">Video Banda Neira</h3><button onclick="closeVideoModal()" class="text-2xl hover:text-red-500 transition"> <i class="fas fa-times"></i> </button>
-    </div>
-    <div class="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center">
-     <div class="text-center"><i class="fas fa-play-circle text-8xl mb-4 text-white opacity-50"></i>
-      <p class="text-2xl">Video Promosi Banda Neira</p>
-      <p class="text-gray-400 mt-2">(Video demo)</p>
-     </div>
-    </div>
-   </div>
-  </div><!-- Image Modal -->
-  <div id="imageModal" class="modal">
-   <div class="max-w-4xl w-full mx-4"><button onclick="closeImageModal()" class="absolute top-4 right-4 text-white text-3xl hover:text-red-500 transition z-10"> <i class="fas fa-times"></i> </button>
-    <div id="imageModalContent" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl aspect-video flex items-center justify-center"><i class="fas fa-image text-9xl"></i>
-    </div>
-   </div>
-  </div><!-- Virtual Tour Modal -->
-  <div id="virtualTourModal" class="modal">
-   <div class="bg-gray-900 rounded-2xl overflow-hidden max-w-6xl w-full mx-4">
-    <div class="flex items-center justify-between p-4 bg-gray-800">
-     <h3 class="text-xl font-bold"><i class="fas fa-vr-cardboard mr-2"></i>Virtual Tour 360°</h3><button onclick="closeVirtualTour()" class="text-2xl hover:text-red-500 transition"> <i class="fas fa-times"></i> </button>
-    </div>
-    <div class="aspect-video bg-gradient-to-br from-cyan-900 to-blue-900 flex items-center justify-center p-8">
-     <div class="text-center"><i class="fas fa-street-view text-9xl mb-6 text-blue-400"></i>
-      <p class="text-3xl font-bold mb-4">Pengalaman Virtual Tour 360°</p>
-      <p class="text-gray-400">Jelajahi Banda Neira secara virtual (Demo)</p>
-     </div>
-    </div>
-   </div>
-  </div>
-  <script>
-        // Configuration
-        const defaultConfig = {
-            hero_title: "Jelajahi Keindahan Banda Neira",
-            hero_subtitle: "Surga Tersembunyi di Maluku",
-            about_title: "Tentang Banda Neira",
-            about_description: "Banda Neira adalah pulau kecil yang terletak di Kepulauan Banda, Maluku. Dikenal sebagai \"Pulau Rempah\", kawasan ini memiliki sejarah panjang sebagai pusat perdagangan rempah-rempah dunia. Keindahan alam bawah lautnya yang memukau menjadikannya surga bagi para penyelam.",
-            cta_button: "Mulai Petualangan",
-            footer_text: "© 2024 Banda Neira Explorer. Semua hak dilindungi.",
-            background_color: "#0f172a",
-            surface_color: "#1e293b",
-            text_color: "#f1f5f9",
-            primary_action_color: "#3b82f6",
-            secondary_action_color: "#60a5fa",
-            font_family: "Inter",
-            font_size: 16
-        };
-
-        let currentLanguage = 'id';
-        let selectedRating = 5;
-        let recordCount = 0;
-
-        const translations = {
-            id: {
-                heroTitle: "Jelajahi Keindahan Banda Neira",
-                heroSubtitle: "Surga Tersembunyi di Maluku",
-                ctaButton: "Mulai Petualangan"
-            },
-            en: {
-                heroTitle: "Explore the Beauty of Banda Neira",
-                heroSubtitle: "Hidden Paradise in Maluku",
-                ctaButton: "Start Adventure"
-            }
-        };
-
-        // Data Handler
-        const dataHandler = {
-            onDataChanged(data) {
-                recordCount = data.length;
-                renderTestimonials(data);
-            }
-        };
-
-        // Initialize SDK
-        async function initializeApp() {
-            if (window.dataSdk) {
-                const initResult = await window.dataSdk.init(dataHandler);
-                if (!initResult.isOk) {
-                    console.error("Failed to initialize data SDK");
-                }
-            }
-
-            if (window.elementSdk) {
-                window.elementSdk.init({
-                    defaultConfig,
-                    onConfigChange,
-                    mapToCapabilities,
-                    mapToEditPanelValues
-                });
-            }
-        }
-
-        // Config Change Handler
-        async function onConfigChange(config) {
-            const heroTitle = document.getElementById('heroTitle');
-            const heroSubtitle = document.getElementById('heroSubtitle');
-            const aboutTitle = document.getElementById('aboutTitle');
-            const aboutDescription = document.getElementById('aboutDescription');
-            const footerText = document.getElementById('footerText');
-
-            if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
-            if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-            if (aboutTitle) aboutTitle.textContent = config.about_title || defaultConfig.about_title;
-            if (aboutDescription) aboutDescription.textContent = config.about_description || defaultConfig.about_description;
-            if (footerText) footerText.textContent = config.footer_text || defaultConfig.footer_text;
-
-            document.body.style.background = config.background_color || defaultConfig.background_color;
-            
-            const customFont = config.font_family || defaultConfig.font_family;
-            const baseFontStack = 'system-ui, -apple-system, sans-serif';
-            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
-
-            const baseSize = config.font_size || defaultConfig.font_size;
-            document.documentElement.style.fontSize = `${baseSize}px`;
-
-            document.documentElement.style.setProperty('--bg-primary', config.background_color || defaultConfig.background_color);
-            document.documentElement.style.setProperty('--bg-secondary', config.surface_color || defaultConfig.surface_color);
-            document.documentElement.style.setProperty('--text-primary', config.text_color || defaultConfig.text_color);
-            document.documentElement.style.setProperty('--accent-primary', config.primary_action_color || defaultConfig.primary_action_color);
-            document.documentElement.style.setProperty('--accent-secondary', config.secondary_action_color || defaultConfig.secondary_action_color);
-        }
-
-        // Capabilities
-        function mapToCapabilities(config) {
-            return {
-                recolorables: [
-                    {
-                        get: () => config.background_color || defaultConfig.background_color,
-                        set: (value) => {
-                            config.background_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ background_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.surface_color || defaultConfig.surface_color,
-                        set: (value) => {
-                            config.surface_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ surface_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.text_color || defaultConfig.text_color,
-                        set: (value) => {
-                            config.text_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
-                        set: (value) => {
-                            config.primary_action_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ primary_action_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-                        set: (value) => {
-                            config.secondary_action_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ secondary_action_color: value });
-                            }
-                        }
-                    }
-                ],
-                borderables: [],
-                fontEditable: {
-                    get: () => config.font_family || defaultConfig.font_family,
-                    set: (value) => {
-                        config.font_family = value;
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    }
-                },
-                fontSizeable: {
-                    get: () => config.font_size || defaultConfig.font_size,
-                    set: (value) => {
-                        config.font_size = value;
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_size: value });
-                        }
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1f2937', // Dark Grey/Black from CV
+                        secondary: '#e5e7eb', // Light Grey from CV background
+                        accent: '#dc2626', // Red accent (inspired by the photo background)
                     }
                 }
-            };
-        }
-
-        function mapToEditPanelValues(config) {
-            return new Map([
-                ["hero_title", config.hero_title || defaultConfig.hero_title],
-                ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
-                ["about_title", config.about_title || defaultConfig.about_title],
-                ["about_description", config.about_description || defaultConfig.about_description],
-                ["cta_button", config.cta_button || defaultConfig.cta_button],
-                ["footer_text", config.footer_text || defaultConfig.footer_text]
-            ]);
-        }
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeApp();
-
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('navbar-scroll');
-                } else {
-                    navbar.classList.remove('navbar-scroll');
-                }
-            });
-
-            // Counter animation
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
-
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-
-                const counterObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            updateCounter();
-                            counterObserver.disconnect();
-                        }
-                    });
-                }, { threshold: 0.5 });
-
-                counterObserver.observe(counter);
-            });
-
-            // Star rating
-            const stars = document.querySelectorAll('.star');
-            stars.forEach(star => {
-                star.addEventListener('click', () => {
-                    selectedRating = parseInt(star.getAttribute('data-rating'));
-                    document.getElementById('ratingValue').value = selectedRating;
-                    updateStars();
-                });
-            });
-
-            updateStars();
-        });
-
-        function updateStars() {
-            const stars = document.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                if (index < selectedRating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-        }
-
-        // Theme Toggle
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            const icon = document.querySelector('#themeToggle i');
-            if (document.body.classList.contains('light-mode')) {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
-        });
-
-        // Language Switcher
-        document.getElementById('langSwitcher').addEventListener('change', (e) => {
-            currentLanguage = e.target.value;
-            updateLanguage();
-        });
-
-        function updateLanguage() {
-            const t = translations[currentLanguage];
-            if (window.elementSdk && window.elementSdk.config) {
-                const config = window.elementSdk.config;
-                window.elementSdk.setConfig({
-                    hero_title: t.heroTitle,
-                    hero_subtitle: t.heroSubtitle,
-                    cta_button: t.ctaButton
-                });
             }
         }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-gray-900 selection:text-white">
 
-        // Mobile Menu
-        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-
-        // Filter Destinations
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active', 'bg-blue-600'));
-                btn.classList.add('active', 'bg-blue-600');
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold tracking-tight text-gray-900">LSR.</span>
+                </div>
                 
-                const filter = btn.getAttribute('data-filter');
-                const cards = document.querySelectorAll('.destination-card');
-                
-                cards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Beranda</a>
+                    <a href="#about" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Profil</a>
+                    <a href="#experience" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Organisasi</a>
+                    <a href="#skills" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Kemampuan</a>
+                    <a href="#contact" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Kontak</a>
+                </div>
 
-        // Forms
-        async function handleContactSubmit(event) {
-            event.preventDefault();
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Beranda</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Profil</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Organisasi</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Kemampuan</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 px-4 relative overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="blob bg-red-100 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="blob bg-blue-50 w-80 h-80 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <!-- Profile Image Container -->
+            <div class="relative w-48 h-48 mx-auto mb-8 group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-gray-200 to-gray-100 rounded-full transform rotate-6 group-hover:rotate-12 transition-transform duration-300"></div>
+                <!-- Placeholder Image - User should replace src with their actual photo -->
+                <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Laluna&backgroundColor=b6e3f4" alt="Laluna Sivia Ramadhani" class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-xl">
+            </div>
             
-            if (!window.dataSdk) return;
-
-            if (recordCount >= 999) {
-                showToast('Batas maksimum 999 pesan telah tercapai. Silakan hubungi kami melalui telepon atau email.');
-                return;
-            }
-
-            const submitBtn = document.getElementById('contactSubmitText');
-            const loadingIcon = document.getElementById('contactSubmitLoading');
-            submitBtn.classList.add('hidden');
-            loadingIcon.classList.remove('hidden');
-
-            const formData = {
-                id: Date.now().toString(),
-                type: 'contact',
-                name: document.getElementById('contactName').value,
-                email: document.getElementById('contactEmail').value,
-                message: document.getElementById('contactMessage').value,
-                rating: 0,
-                createdAt: new Date().toISOString()
-            };
-
-            const result = await window.dataSdk.create(formData);
-
-            submitBtn.classList.remove('hidden');
-            loadingIcon.classList.add('hidden');
-
-            if (result.isOk) {
-                document.getElementById('contactForm').reset();
-                const successMsg = document.getElementById('contactSuccessMessage');
-                successMsg.classList.remove('hidden');
-                setTimeout(() => successMsg.classList.add('hidden'), 5000);
-            } else {
-                showToast('Gagal mengirim pesan. Silakan coba lagi.');
-            }
-        }
-
-        async function handleRatingSubmit(event) {
-            event.preventDefault();
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
+                Laluna Sivia <span class="text-gray-500">Ramadhani</span>
+            </h1>
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <span class="h-px w-8 bg-gray-300"></span>
+                <p class="text-xl md:text-2xl text-gray-600 font-light">Calon DPH MPK SMAN 1 Subang</p>
+                <span class="h-px w-8 bg-gray-300"></span>
+            </div>
             
-            if (!window.dataSdk) return;
+            <div class="flex justify-center gap-4">
+                <a href="#contact" class="px-6 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    Hubungi Saya
+                </a>
+                <a href="#about" class="px-6 py-3 bg-white text-gray-900 border border-gray-200 rounded-full font-medium hover:bg-gray-50 transition-all">
+                    Lihat Profil
+                </a>
+            </div>
+        </div>
+    </section>
 
-            if (recordCount >= 999) {
-                showToast('Batas maksimum 999 testimoni telah tercapai.');
-                return;
-            }
-
-            const submitBtn = document.getElementById('ratingSubmitText');
-            const loadingIcon = document.getElementById('ratingSubmitLoading');
-            submitBtn.classList.add('hidden');
-            loadingIcon.classList.remove('hidden');
-
-            const formData = {
-                id: Date.now().toString(),
-                type: 'rating',
-                name: document.getElementById('ratingName').value,
-                email: '',
-                message: document.getElementById('ratingMessage').value,
-                rating: selectedRating,
-                createdAt: new Date().toISOString()
-            };
-
-            const result = await window.dataSdk.create(formData);
-
-            submitBtn.classList.remove('hidden');
-            loadingIcon.classList.add('hidden');
-
-            if (result.isOk) {
-                document.getElementById('ratingForm').reset();
-                selectedRating = 5;
-                updateStars();
-                const successMsg = document.getElementById('ratingSuccessMessage');
-                successMsg.classList.remove('hidden');
-                setTimeout(() => successMsg.classList.add('hidden'), 5000);
-            } else {
-                showToast('Gagal mengirim penilaian. Silakan coba lagi.');
-            }
-        }
-
-        async function handleBookingSubmit(event) {
-            event.preventDefault();
-            
-            if (!window.dataSdk) return;
-
-            if (recordCount >= 999) {
-                showToast('Batas maksimum 999 pemesanan telah tercapai. Silakan hubungi kami langsung.');
-                return;
-            }
-
-            const submitBtn = document.getElementById('bookingSubmitText');
-            const loadingIcon = document.getElementById('bookingSubmitLoading');
-            submitBtn.classList.add('hidden');
-            loadingIcon.classList.remove('hidden');
-
-            const formData = {
-                id: Date.now().toString(),
-                type: 'booking',
-                name: document.getElementById('bookingName').value,
-                email: document.getElementById('bookingEmail').value,
-                message: `Destinasi: ${document.getElementById('bookingDestination').value}, Tanggal: ${document.getElementById('bookingDate').value}, Jumlah: ${document.getElementById('bookingGuests').value}`,
-                rating: 0,
-                createdAt: new Date().toISOString()
-            };
-
-            const result = await window.dataSdk.create(formData);
-
-            submitBtn.classList.remove('hidden');
-            loadingIcon.classList.add('hidden');
-
-            if (result.isOk) {
-                const successMsg = document.getElementById('bookingSuccessMessage');
-                successMsg.classList.remove('hidden');
-                setTimeout(() => {
-                    closeBookingModal();
-                    successMsg.classList.add('hidden');
-                    document.getElementById('bookingForm').reset();
-                }, 3000);
-            } else {
-                showToast('Gagal melakukan pemesanan. Silakan coba lagi.');
-            }
-        }
-
-        // Testimonials
-        function renderTestimonials(data) {
-            const testimonials = data.filter(item => item.type === 'rating');
-            const carousel = document.getElementById('testimonialCarousel');
-            
-            if (testimonials.length === 0) {
-                carousel.innerHTML = '<div class="text-center text-gray-400 py-8 w-full">Belum ada testimoni. Jadilah yang pertama!</div>';
-                return;
-            }
-
-            carousel.innerHTML = testimonials.map(item => `
-                <div class="carousel-item testimonial-card glass-effect rounded-2xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold">
-                            ${item.name.charAt(0).toUpperCase()}
-                        </div>
-                        <div class="ml-3">
-                            <h4 class="font-bold">${item.name}</h4>
-                            <div class="flex">
-                                ${Array(item.rating).fill('<i class="fas fa-star text-yellow-400 text-sm"></i>').join('')}
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-user-circle mr-3 text-gray-400"></i> Profil Saya
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed text-lg mb-6 text-justify">
+                        Saya adalah siswi kelas XI-2 di SMAN 1 Subang yang memiliki keinginan mengembangkan diri melalui organisasi MPK. Sebelumnya saya memiliki bekal pengalaman berorganisasi di MPK sebagai Anggota komisi 1, hal tersebut membuat saya ingin terus berperan aktif dalam sebuah organisasi.
+                    </p>
+                    
+                    <!-- Education Timeline Mini -->
+                    <div class="space-y-4 mt-8">
+                        <h3 class="font-bold text-gray-900 uppercase tracking-wider text-sm">Riwayat Pendidikan</h3>
+                        <div class="relative pl-6 border-l-2 border-gray-200 space-y-6">
+                            <div class="relative">
+                                <span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-gray-400 border-2 border-white"></span>
+                                <h4 class="text-gray-900 font-semibold">SMAN 1 Subang</h4>
+                                <span class="text-sm text-gray-500">2023 - Sekarang</span>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-gray-300 border-2 border-white"></span>
+                                <h4 class="text-gray-900 font-semibold">SMPIT 'Alamy Subang</h4>
+                                <span class="text-sm text-gray-500">2020 - 2023</span>
+                            </div>
+                            <div class="relative">
+                                <span class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-gray-200 border-2 border-white"></span>
+                                <h4 class="text-gray-900 font-semibold">SDIT 'Alamy Subang</h4>
+                                <span class="text-sm text-gray-500">2014 - 2020</span>
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-400">${item.message}</p>
-                    <div class="text-sm text-gray-500 mt-4">
-                        ${new Date(item.createdAt).toLocaleDateString('id-ID')}
+                </div>
+                
+                <!-- Stats / Quick Info -->
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                        <i class="fas fa-bullseye text-3xl text-red-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">Visi & Tujuan</h3>
+                        <p class="text-gray-600 text-sm">Berkomitmen untuk berkontribusi aktif dalam meningkatkan kualitas organisasi MPK melalui pengalaman dan dedikasi.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                        <i class="fas fa-users text-3xl text-blue-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">Kolaborasi</h3>
+                        <p class="text-gray-600 text-sm">Mengutamakan kerjasama tim dan komunikasi yang efektif dalam setiap program kerja.</p>
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+        </div>
+    </section>
 
-        // Modals
-        function openBookingModal(destination) {
-            document.getElementById('bookingDestination').value = destination;
-            document.getElementById('bookingModal').classList.add('active');
-        }
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pengalaman Organisasi</h2>
+                <div class="w-20 h-1 bg-gray-900 mx-auto rounded-full"></div>
+            </div>
 
-        function closeBookingModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-        }
+            <div class="space-y-8">
+                <!-- Card 1: MPK SMAN 1 Subang -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 opacity-50"></div>
+                    <div class="flex flex-col md:flex-row justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Pengurus MPK SMAN 1 Subang</h3>
+                            <p class="text-blue-600 font-medium">Anggota Aktif</p>
+                        </div>
+                        <span class="inline-block bg-gray-100 text-gray-600 px-4 py-1 rounded-full text-sm font-medium mt-2 md:mt-0">2023 - 2024</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-3">
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> Anggota Komisi 1
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> Seksi Keamanan Classmeet '23
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> Seksi Keamanan Aloqest '24
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> Person in Charge Aloqest '24
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> Pendamping Gugus MPLS Ellevander '62
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-xs"></i> Seksi Keamanan HUT SMAN 1 Subang ke-62
+                        </li>
+                    </ul>
+                </div>
 
-        function openVideoModal() {
-            document.getElementById('videoModal').classList.add('active');
-        }
+                <!-- Card 2: Rohis -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all">
+                    <div class="flex flex-col md:flex-row justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Ekstrakurikuler Rohis Ash-Sholihin</h3>
+                            <p class="text-gray-500 font-medium">Anggota</p>
+                        </div>
+                        <span class="inline-block bg-gray-100 text-gray-600 px-4 py-1 rounded-full text-sm font-medium mt-2 md:mt-0">2023 - 2024</span>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-caret-right text-gray-400 mt-1 mr-3"></i> Sekretaris 2 Peringatan Isra Mi'raj 2024
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-caret-right text-gray-400 mt-1 mr-3"></i> Wakil Ketua Pelaksana Pesantren Kilat Akhwat 2024
+                        </li>
+                    </ul>
+                </div>
 
-        function closeVideoModal() {
-            document.getElementById('videoModal').classList.remove('active');
-        }
+                <!-- Card 3: OSIS SMP -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all opacity-90">
+                    <div class="flex flex-col md:flex-row justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Pengurus OSIS SMPIT 'Alamy</h3>
+                            <p class="text-gray-500 font-medium">Pengurus Inti</p>
+                        </div>
+                        <span class="inline-block bg-gray-100 text-gray-600 px-4 py-1 rounded-full text-sm font-medium mt-2 md:mt-0">2021 - 2022</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-3">
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-dot-circle text-gray-300 mt-1 mr-2 text-xs"></i> Ketua Seksi Bidang 4
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-dot-circle text-gray-300 mt-1 mr-2 text-xs"></i> Seksi Acara MPLS SMPIT 'Alamy
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-dot-circle text-gray-300 mt-1 mr-2 text-xs"></i> Seksi Acara LDKS SMPIT 'Alamy
+                        </li>
+                        <li class="flex items-start text-gray-600">
+                            <i class="fas fa-dot-circle text-gray-300 mt-1 mr-2 text-xs"></i> MC Gerakan Literasi 'Alamy
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function openImageModal(id) {
-            document.getElementById('imageModal').classList.add('active');
-        }
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                
+                <!-- Soft Skills -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-brain text-purple-500 mr-3"></i> Soft Skills
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-700">Kerja sama tim</span>
+                                <span class="text-sm font-medium text-gray-500">Excellent</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-purple-600 h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-700">Kemampuan Komunikasi</span>
+                                <span class="text-sm font-medium text-gray-500">Very Good</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-gray-700">Manajemen Waktu</span>
+                                <span class="text-sm font-medium text-gray-500">Good</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="bg-purple-400 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        function closeImageModal() {
-            document.getElementById('imageModal').classList.remove('active');
-        }
+                <!-- Hard Skills -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-laptop-code text-blue-500 mr-3"></i> Hard Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 flex-1 min-w-[150px] text-center hover:bg-blue-100 transition-colors cursor-default">
+                            <i class="fas fa-hashtag text-2xl text-blue-600 mb-2"></i>
+                            <h4 class="font-bold text-gray-800">Social Media</h4>
+                            <p class="text-xs text-gray-500">Management</p>
+                        </div>
+                        <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 flex-1 min-w-[150px] text-center hover:bg-orange-100 transition-colors cursor-default">
+                            <i class="fab fa-microsoft text-2xl text-orange-600 mb-2"></i>
+                            <h4 class="font-bold text-gray-800">Microsoft</h4>
+                            <p class="text-xs text-gray-500">Office Suite</p>
+                        </div>
+                    </div>
+                </div>
 
-        function openVirtualTour() {
-            document.getElementById('virtualTourModal').classList.add('active');
-        }
+            </div>
+        </div>
+    </section>
 
-        function closeVirtualTour() {
-            document.getElementById('virtualTourModal').classList.remove('active');
-        }
-
-        // Chatbot
-        function toggleChat() {
-            document.getElementById('chatWindow').classList.toggle('active');
-        }
-
-        function sendChatMessage(event) {
-            event.preventDefault();
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">Hubungi Saya</h2>
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <a href="mailto:lalunasivia@gmail.com" class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all group">
+                    <i class="fas fa-envelope text-3xl mb-4 text-blue-400 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-lg font-semibold">Email</h3>
+                    <p class="text-gray-400">lalunasivia@gmail.com</p>
+                </a>
+                <a href="https://instagram.com/lalOona" target="_blank" class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all group">
+                    <i class="fab fa-instagram text-3xl mb-4 text-pink-500 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-lg font-semibold">Instagram</h3>
+                    <p class="text-gray-400">@lalOona</p>
+                </a>
+                <div class="bg-gray-800 p-6 rounded-xl group md:col-span-2 md:w-1/2 md:mx-auto">
+                    <i class="fab fa-whatsapp text-3xl mb-4 text-green-500 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-lg font-semibold">WhatsApp</h3>
+                    <p class="text-gray-400">+62 859 4139 0395</p>
+                </div>
+            </div>
             
-            if (message) {
-                const chatMessages = document.getElementById('chatMessages');
-                
-                chatMessages.innerHTML += `
-                    <div class="message user">${message}</div>
-                `;
-                
-                input.value = '';
-                
-                setTimeout(() => {
-                    let response = 'Maaf, saya belum memahami pertanyaan Anda. Silakan hubungi tim kami untuk informasi lebih lanjut.';
-                    
-                    if (message.toLowerCase().includes('tiket') || message.toLowerCase().includes('harga')) {
-                        response = 'Harga tiket bervariasi tergantung destinasi. Benteng Belgica: Rp 25.000, Pulau Hatta: Rp 350.000. Anda bisa memesan langsung melalui website kami!';
-                    } else if (message.toLowerCase().includes('diving') || message.toLowerCase().includes('snorkeling')) {
-                        response = 'Banda Neira memiliki spot diving kelas dunia! Pulau Hatta dan lokasi kapal karam sangat direkomendasikan. Waktu terbaik untuk diving adalah April-November.';
-                    } else if (message.toLowerCase().includes('hotel') || message.toLowerCase().includes('penginapan')) {
-                        response = 'Tersedia berbagai pilihan penginapan dari homestay hingga hotel. Kami bisa membantu merekomendasikan tempat menginap sesuai budget Anda.';
-                    }
-                    
-                    chatMessages.innerHTML += `
-                        <div class="message bot">${response}</div>
-                    `;
-                    
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 1000);
-                
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        }
+            <div class="text-gray-500 text-sm border-t border-gray-800 pt-8">
+                <p><i class="fas fa-map-marker-alt mr-2"></i> BTN Puskopad Sukajaya</p>
+                <p class="mt-2">&copy; 2024 Laluna Sivia Ramadhani. All Rights Reserved.</p>
+            </div>
+        </div>
+    </section>
 
-        // Utilities
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
-        function shareToSocial(platform) {
-            const url = window.location.href;
-            const text = 'Jelajahi Keindahan Banda Neira';
-            
-            let shareUrl = '';
-            switch(platform) {
-                case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                    break;
-                case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-                    break;
-            }
-            
-            if (shareUrl) {
-                window.open(shareUrl, '_blank', 'noopener,noreferrer');
-            }
-        }
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-24 right-6 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0d8dc672bab809',t:'MTc2MzUzMjcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
